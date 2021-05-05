@@ -1,8 +1,7 @@
-# Playing with XState
+# Coffee App
 
 ## What
-Examples using XState library. See deployed page at https://vazerthon.github.io/xstate-demo/
-
+A diary app for logging coffee brews
 ## Development
 
 Dev Build
@@ -13,11 +12,3 @@ $ npm start
 ```
 
 Now point your browser to http://localhost:3000/.
-
-```
-
-Deploy to GitHub Pages
-----------------
-```bash
-$ npm run deploy
-```
