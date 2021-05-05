@@ -8,6 +8,7 @@ import { AddButton } from '../components/Buttons';
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
 import { H1 } from '../components/Typography';
+import Welcome from '../components/Welcome';
 
 const Card = styled(BrewCard)`
   margin-top: ${({ theme }) => theme.spacing.units(1)};
@@ -30,10 +31,22 @@ export default function Brews() {
   const history = useHistory();
   const goToAddPage = () => history.push(routes.add);
 
+  const haveBrews = brews.length > 0;
+
   return (
     <>
-      <H1>Brews</H1>
-      {brews.map(toBrewCard)}
+      {haveBrews && (
+        <>
+          <H1>Brews</H1>
+          {brews.map(toBrewCard)}
+        </>
+      )}
+      {!haveBrews && (
+        <>
+          <H1>Welcome!</H1>
+          <Welcome />
+        </>
+      )}
       <AddBrew role="button" onClick={goToAddPage} />
     </>
   )
