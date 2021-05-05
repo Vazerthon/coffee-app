@@ -26,16 +26,11 @@ const IconContainer = styled.div`
   opacity: 0.3;
 `;
 
-const Label = styled(Span)`
-  text-transform: uppercase;
-  font-size: ${({ theme }) => theme.spacing.units(3)};
-`;
-
-export function Box({ children, icon, label, centre }) {
+export function Box({ children, icon, label, centre, capitalise }) {
   return (
     <BoxContainer centre={centre}>
-      <Span>{children}</Span>
-      {label && <Label>{label}</Label>}
+      <Span capitalise={capitalise}>{children}</Span>
+      {label && <Span uppercase small>{label}</Span>}
       <IconContainer>{icon}</IconContainer>
     </BoxContainer>
   );
@@ -46,11 +41,13 @@ Box.propTypes = {
   icon: PropTypes.node.isRequired,
   label: PropTypes.string,
   centre: PropTypes.bool,
+  capitalise: PropTypes.bool,
 };
 
 Box.defaultProps = {
   label: undefined,
   centre: false,
+  capitalise: false,
 };
 
 export default function BoxList({ children }) {

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 
-import { P } from '../Typography';
+import { brewType } from '../Types';
+
+import { P, H2, Span } from '../Typography';
 import {
   CoffeePot,
   Scales,
@@ -15,7 +17,6 @@ import {
 import BoxList, { Box } from './BoxList';
 import Time from './Time';
 import DateLabel from './DateLabel';
-import { brewType } from '../Types';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
@@ -40,28 +41,40 @@ export default function BrewCard({
 }) {
   return (
     <Container className={className}>
-      <P uppercase centre>
+      <H2 centre capitalise>
         {bean}
         <br />
-        <DateLabel>{dateTime}</DateLabel>
-      </P>
+        <Span small>
+          <DateLabel>{dateTime}</DateLabel>
+        </Span>
+      </H2>
       <BoxList>
-        <Box centre icon={<CoffeePot role="img" />} label="method">
+        <Box centre capitalise icon={<CoffeePot role="img" />} label="method">
           {method}
         </Box>
-        <Box centre icon={<Scales role="img" />} label="weight">
+        <Box centre capitalise icon={<Scales role="img" />} label="weight">
           {groundsWeight}g
         </Box>
-        <Box centre icon={<Grinder role="img" />} label="grind size">
+        <Box centre capitalise icon={<Grinder role="img" />} label="grind size">
           {grindSize}
         </Box>
-        <Box centre icon={<WaterDrop role="img" />} label="water weight">
+        <Box
+          centre
+          capitalise
+          icon={<WaterDrop role="img" />}
+          label="water weight"
+        >
           {waterWeight}g
         </Box>
-        <Box centre icon={<Thermometer role="img" />} label="water temp">
+        <Box
+          centre
+          capitalise
+          icon={<Thermometer role="img" />}
+          label="water temp"
+        >
           {waterTemperature}°
         </Box>
-        <Box centre icon={<Timer role="img" />} label="time">
+        <Box centre capitalise icon={<Timer role="img" />} label="time">
           <Time>{brewTime}</Time>
         </Box>
       </BoxList>
