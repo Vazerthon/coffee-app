@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line import/prefer-default-export
+export const routesType = PropTypes.shape({
+  home: PropTypes.string,
+  add: PropTypes.string,
+})
+
 export const brewType = PropTypes.shape({
   bean: PropTypes.string,
   method: PropTypes.string,

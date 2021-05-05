@@ -4,6 +4,8 @@ import FocusTrap from 'focus-trap-react';
 import styled from '@emotion/styled';
 import { Menu, Close } from './Icons';
 
+import { routesType } from './Types';
+
 const List = styled.ul`
   list-style: none;
   justify-content: flex-end;
@@ -111,9 +113,6 @@ export default function Nav({ routes, currentPath }) {
 }
 
 Nav.propTypes = {
-  routes: PropTypes.shape({
-    home: PropTypes.string,
-    add: PropTypes.string,
-  }).isRequired,
+  routes: routesType.isRequired,
   currentPath: PropTypes.string.isRequired,
 };
