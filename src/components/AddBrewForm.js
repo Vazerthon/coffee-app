@@ -3,8 +3,9 @@ import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { brewType } from './Types';
 import { Span } from './Typography';
+import { Button } from './Buttons';
+import { brewType } from './Types';
 
 import {
   Beans,
@@ -43,14 +44,6 @@ const IconLabel = styled(Span)`
 
 const IconWrapper = styled(Span)`
   margin-left: ${({ theme }) => theme.spacing.units(2)};
-`;
-
-const Button = styled.button`
-  height: ${({ theme }) => theme.spacing.units(8)};
-  text-transform: capitalize;
-  background-color: ${({ theme }) => theme.colour.tertiary};
-  color: ${({ theme }) => theme.colour.neutral.dark};
-  border: 1px solid ${({ theme }) => theme.colour.primary};
 `;
 
 const LabelledInput = ({ label, value, onChange, type, icon, list }) => {
@@ -95,6 +88,8 @@ LabelledInput.defaultProps = {
   list: undefined,
 };
 
+const brewIsValid = (brew) => !!brew.bean.trim() && !!brew.method.trim();
+
 export default function AddBrewForm({
   defaultBrew,
   addBrew,
@@ -112,6 +107,8 @@ export default function AddBrewForm({
   const formatDate = (date) => format(date, "yyyy-MM-dd'T'HH:mm");
   const patchBrewDateTime = (dateString) =>
     patchBrew('dateTime')(new Date(dateString));
+
+  const enableSaveButton = brewIsValid(brew);
 
   return (
     <Column>
@@ -181,7 +178,7 @@ export default function AddBrewForm({
         onChange={patchBrewDateTime}
       />
 
-      <Button onClick={saveBrew}>add</Button>
+      <Button onClick={saveBrew} disabled={!enableSaveButton}>add</Button>
     </Column>
   );
 }

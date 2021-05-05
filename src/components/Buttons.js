@@ -9,17 +9,17 @@ const BigPlusCircle = styled(PlusCircle)`
   box-shadow: 0 0 ${({ theme }) => theme.spacing.units(1)};
 `;
 
-const Button = styled.button`
+const AddButtonBase = styled.button`
   color: ${({ theme }) => theme.colour.tertiary};
   background: none;
   border: none;
 `;
 
-export default function AddButton({ className, onClick }) {
+export function AddButton({ className, onClick }) {
   return (
-    <Button className={className} onClick={onClick}>
+    <AddButtonBase className={className} onClick={onClick}>
       <BigPlusCircle />
-    </Button>
+    </AddButtonBase>
   )
 }
 
@@ -31,3 +31,17 @@ AddButton.propTypes = {
 AddButton.defaultProps = {
   className: undefined,
 };
+
+export const Button = styled.button`
+  height: ${({ theme }) => theme.spacing.units(8)};
+  text-transform: capitalize;
+  background-color: ${({ theme }) => theme.colour.tertiary};
+  color: ${({ theme }) => theme.colour.neutral.dark};
+  border: 1px solid ${({ theme }) => theme.colour.primary};
+
+  :disabled {
+    background-color: ${({ theme }) => theme.colour.neutral.dark};
+    color: ${({ theme }) => theme.colour.neutral.light};
+    cursor: not-allowed;
+  }
+`;

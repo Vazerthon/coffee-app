@@ -3,7 +3,7 @@ import {useHistory} from 'react-router';
 import styled from '@emotion/styled/macro';
 
 import BrewCard from '../components/BrewCard/BrewCard';
-import AddButton from '../components/AddButton';
+import { AddButton } from '../components/Buttons';
 
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
