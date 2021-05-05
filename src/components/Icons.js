@@ -5,10 +5,11 @@ import {
   GiWaterDrop,
   GiSandsOfTime,
   GiManualMeatGrinder,
-  GiThermometerHot
+  GiThermometerHot,
+  GiHamburgerMenu,
 } from 'react-icons/gi';
 
-import { IoMdDocument } from 'react-icons/io';
+import { IoMdDocument, IoMdClose } from 'react-icons/io';
 import { GoCalendar } from 'react-icons/go';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 
@@ -22,3 +23,5 @@ export const Grinder = GiManualMeatGrinder;
 export const Notes = IoMdDocument;
 export const PlusCircle = BsFillPlusCircleFill;
 export const Calendar = GoCalendar;
+export const Menu = GiHamburgerMenu;
+export const Close = IoMdClose;

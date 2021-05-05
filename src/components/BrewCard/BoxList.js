@@ -8,7 +8,6 @@ const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   position: relative;
   ${({ centre }) => centre && `text-align: center;`}
 `;

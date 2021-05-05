@@ -78,9 +78,11 @@ export default function BrewCard({
           <Time>{brewTime}</Time>
         </Box>
       </BoxList>
-      <Box icon={<Notes role="img" />}>
-        <P>{notes}</P>
-      </Box>
+      {notes && (
+        <Box icon={<Notes role="img" />}>
+          <P>{notes}</P>
+        </Box>
+      )}
     </Container>
   );
 }
