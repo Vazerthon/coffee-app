@@ -7,6 +7,7 @@ import { AddButton } from '../components/Buttons';
 
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
+import { H1 } from '../components/Typography';
 
 const Card = styled(BrewCard)`
   margin-top: ${({ theme }) => theme.spacing.units(1)};
@@ -31,6 +32,7 @@ export default function Brews() {
 
   return (
     <>
+      <H1>Brews</H1>
       {brews.map(toBrewCard)}
       <AddBrew role="button" onClick={goToAddPage} />
     </>

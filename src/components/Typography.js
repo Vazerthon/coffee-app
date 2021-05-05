@@ -21,6 +21,7 @@ export const H1 = styled.h1`
   margin: 0;
   font-size: ${({ theme }) => theme.spacing.units(6)};
   font-family: ${({ theme }) => theme.typography.fontFamilyHeading};
+  margin-bottom: ${({ theme }) => theme.spacing.units(3)};
   ${({ centre }) => centre && 'text-align: center;'}
   ${({ uppercase }) => uppercase && 'text-transform: uppercase;'}
   ${({ capitalise }) => capitalise && 'text-transform: capitalize;'}
