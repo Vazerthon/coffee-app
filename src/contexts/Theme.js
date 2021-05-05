@@ -1,4 +1,5 @@
 import { css, Global, ThemeProvider } from '@emotion/react/macro';
+import PropTypes from 'prop-types';
 
 const spacingUnit = 0.25;
 
@@ -36,6 +37,10 @@ function Theme({ children }) {
     `} />
     {children}
   </ThemeProvider>;
+}
+
+Theme.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export default Theme;

@@ -50,11 +50,11 @@ const parseStoredBrew = ({
   ...rest
 }) => ({
   dateTime: new Date(dateTime),
-  groundsWeight: Number.parseInt(groundsWeight),
-  grindSize: Number.parseInt(grindSize),
-  waterWeight: Number.parseInt(waterWeight),
-  waterTemperature: Number.parseInt(waterTemperature),
-  brewTime: Number.parseInt(brewTime),
+  groundsWeight: Number.parseInt(groundsWeight, 10),
+  grindSize: Number.parseInt(grindSize, 10),
+  waterWeight: Number.parseInt(waterWeight, 10),
+  waterTemperature: Number.parseInt(waterTemperature, 10),
+  brewTime: Number.parseInt(brewTime, 10),
   ...rest,
 });
 

@@ -48,6 +48,11 @@ Box.propTypes = {
   centre: PropTypes.bool,
 };
 
+Box.defaultProps = {
+  label: undefined,
+  centre: false,
+};
+
 export default function BoxList({ children }) {
   return <Row>{children}</Row>;
 }

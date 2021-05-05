@@ -6,5 +6,5 @@ export default function DateLabel({ children }) {
 }
 
 DateLabel.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.instanceOf(Date).isRequired,
 };

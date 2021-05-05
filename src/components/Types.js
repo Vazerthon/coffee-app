@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line import/prefer-default-export
 export const brewType = PropTypes.shape({
   bean: PropTypes.string,
   method: PropTypes.string,
@@ -9,5 +10,5 @@ export const brewType = PropTypes.shape({
   waterTemperature: PropTypes.number,
   brewTime: PropTypes.number,
   notes: PropTypes.string,
-  dateTime: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  dateTime: PropTypes.instanceOf(Date),
 });

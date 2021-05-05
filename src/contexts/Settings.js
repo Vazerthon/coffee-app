@@ -10,13 +10,11 @@ const settings = {
   },
 };
 
-export const SettingsProvider = ({ children }) => {
-  return (
+export const SettingsProvider = ({ children }) => (
     <SettingsContext.Provider value={settings}>
       {children}
     </SettingsContext.Provider>
   );
-};
 
 SettingsProvider.propTypes = {
   children: PropTypes.node.isRequired,

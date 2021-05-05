@@ -84,11 +84,15 @@ LabelledInput.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.object,
-  ]),
+  ]).isRequired,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   list: PropTypes.arrayOf(PropTypes.string),
+};
+
+LabelledInput.defaultProps = {
+  list: undefined,
 };
 
 export default function AddBrewForm({
@@ -106,7 +110,8 @@ export default function AddBrewForm({
   };
 
   const formatDate = (date) => format(date, "yyyy-MM-dd'T'HH:mm");
-  const patchBrewDateTime = (dateString) => patchBrew('dateTime')(new Date(dateString))
+  const patchBrewDateTime = (dateString) =>
+    patchBrew('dateTime')(new Date(dateString));
 
   return (
     <Column>
