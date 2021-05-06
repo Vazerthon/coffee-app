@@ -178,7 +178,7 @@ export default function AddBrewForm({
         onChange={patchBrewDateTime}
       />
 
-      <Button onClick={saveBrew} disabled={!enableSaveButton}>add</Button>
+      <Button onClick={saveBrew} disabled={!enableSaveButton} aria-label="Save brew">Save brew</Button>
     </Column>
   );
 }

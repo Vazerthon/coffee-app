@@ -17,7 +17,7 @@ const AddButtonBase = styled.button`
 
 export function AddButton({ className, onClick }) {
   return (
-    <AddButtonBase className={className} onClick={onClick}>
+    <AddButtonBase className={className} onClick={onClick} aria-label="Add new brew">
       <BigPlusCircle />
     </AddButtonBase>
   )
