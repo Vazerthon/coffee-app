@@ -12,7 +12,7 @@ const MassiveBeans = styled(Beans)`
 export default function Welcome() {
   return (
     <>
-      <MassiveBeans />
+      <MassiveBeans role="img" />
       <P>
         Welcome to Coffee Chronicles, your coffee brewing diary and logbook that
         will help you to dial in the perfect cup and remember variables between
