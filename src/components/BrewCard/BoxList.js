@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Span } from '../Typography';
 
 const BoxContainer = styled.div`
-  height: ${({ theme }) => theme.spacing.units(16)};
+  height: ${({ theme }) => theme.spacing.units(12)};
   margin-bottom: ${({ theme }) => theme.spacing.units(2)};
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ const IconContainer = styled.div`
   bottom: 0;
   right: 0;
   color: ${({ theme }) => theme.colour.tertiary};
-  font-size: ${({ theme }) => theme.spacing.units(8)};
+  font-size: ${({ theme }) => theme.spacing.units(6)};
   opacity: 0.3;
 `;
 

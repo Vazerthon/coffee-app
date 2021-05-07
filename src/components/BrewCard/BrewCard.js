@@ -23,7 +23,7 @@ import { Button } from '../Buttons';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
-  padding: ${({ theme }) => theme.spacing.units(4)};
+  padding: ${({ theme }) => theme.spacing.units(2)};
   border-radius: ${({ theme }) => theme.spacing.units(1)};
   box-shadow: 0 0 ${({ theme }) => theme.spacing.units(1)};
 `;
