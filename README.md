@@ -1,4 +1,4 @@
-# Coffee App
+# Coffee Chronicles
 
 ## What
 A diary app for logging coffee brews
