@@ -7,6 +7,7 @@ import {
   GiManualMeatGrinder,
   GiThermometerHot,
   GiHamburgerMenu,
+  GiCog,
 } from 'react-icons/gi';
 
 import { IoMdDocument, IoMdClose } from 'react-icons/io';
@@ -25,3 +26,4 @@ export const PlusCircle = BsFillPlusCircleFill;
 export const Calendar = GoCalendar;
 export const Menu = GiHamburgerMenu;
 export const Close = IoMdClose;
+export const Technique = GiCog;

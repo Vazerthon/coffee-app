@@ -8,7 +8,9 @@ import { H1 } from '../components/Typography';
 
 export default function Add() {
   const history = useHistory();
-  const { beans, methods, makeBrew, addBrew } = useContext(BrewsContext);
+  const { beans, methods, techniques, makeBrew, addBrew } = useContext(
+    BrewsContext,
+  );
   const { routes } = useContext(SettingsContext);
   const navigateHome = () => history.push(routes.home);
 
@@ -21,6 +23,7 @@ export default function Add() {
         onAddBrew={navigateHome}
         beans={beans}
         methods={methods}
+        techniques={techniques}
       />
     </>
   );

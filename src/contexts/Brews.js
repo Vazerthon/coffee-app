@@ -13,6 +13,8 @@ const defaultBrew = {
   waterWeight: 0,
   waterTemperature: 0,
   brewTime: 0,
+  technique: '',
+  taste: 0,
   notes: '',
   dateTime: new Date(),
 };
@@ -25,11 +27,12 @@ const makeBrew = ({
   waterWeight,
   waterTemperature,
   brewTime,
+  technique,
+  taste,
   notes,
   dateTime,
 } = defaultBrew) => ({
   id: uuidv4(),
-  dateTime,
   bean,
   method,
   groundsWeight,
@@ -37,7 +40,10 @@ const makeBrew = ({
   waterWeight,
   waterTemperature,
   brewTime,
+  technique,
+  taste,
   notes,
+  dateTime,
 });
 
 const parseStoredBrew = ({
@@ -71,11 +77,13 @@ export const BrewsProvider = ({ children }) => {
   const addBrew = (brew) => setStoredBrews([...brews, brew]);
   const beans = getUniqueListOfBrewProp('bean', brews);
   const methods = getUniqueListOfBrewProp('method', brews);
+  const techniques = getUniqueListOfBrewProp('technique', brews);
 
   const value = {
     brews,
     beans,
     methods,
+    techniques,
     addBrew,
     makeBrew,
   };

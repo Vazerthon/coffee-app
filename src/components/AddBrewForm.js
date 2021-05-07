@@ -17,6 +17,7 @@ import {
   Grinder,
   Notes,
   Calendar,
+  Technique,
 } from './Icons';
 
 const Label = styled.label`
@@ -96,6 +97,7 @@ export default function AddBrewForm({
   onAddBrew,
   beans,
   methods,
+  techniques,
 }) {
   const [brew, setBrew] = useState(defaultBrew);
   const patchBrew = (key) => (value) => setBrew({ ...brew, [key]: value });
@@ -164,6 +166,14 @@ export default function AddBrewForm({
         onChange={patchBrew('brewTime')}
       />
       <LabelledInput
+        icon={<Technique />}
+        type="text"
+        label="technique"
+        value={brew.technique}
+        onChange={patchBrew('technique')}
+        list={techniques}
+      />
+      <LabelledInput
         icon={<Notes />}
         type="text"
         label="notes"
@@ -189,4 +199,5 @@ AddBrewForm.propTypes = {
   onAddBrew: PropTypes.func.isRequired,
   beans: PropTypes.arrayOf(PropTypes.string).isRequired,
   methods: PropTypes.arrayOf(PropTypes.string).isRequired,
+  techniques: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
