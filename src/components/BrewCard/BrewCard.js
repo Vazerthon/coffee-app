@@ -26,19 +26,26 @@ const Container = styled.div`
   padding: ${({ theme }) => theme.spacing.units(4)};
   border-radius: ${({ theme }) => theme.spacing.units(1)};
   box-shadow: 0 0 ${({ theme }) => theme.spacing.units(1)};
-  position: relative;
 `;
 
 const EditButton = styled(Button)`
-  position: absolute;
-  top: ${({ theme }) => theme.spacing.units(4)};
-  right: ${({ theme }) => theme.spacing.units(4)};
   border-radius: 50%;
-  width: ${({ theme }) => theme.spacing.units(8)};
-  height: ${({ theme }) => theme.spacing.units(8)};
+  min-width: ${({ theme }) => theme.spacing.units(8)};
+  max-width: ${({ theme }) => theme.spacing.units(8)};
+  min-height: ${({ theme }) => theme.spacing.units(8)};
+  max-height: ${({ theme }) => theme.spacing.units(8)};
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: ${({ theme }) => theme.spacing.units(4)};
+`;
+
+const Row = styled.div`
+  display: flex;
+`;
+
+const Title = styled(H2)`
+  width: 100%;
 `;
 
 export default function BrewCard({
@@ -58,16 +65,18 @@ export default function BrewCard({
 }) {
   return (
     <Container className={className}>
-      <H2 centre capitalise>
-        {bean}
-        <br />
-        <Span small>
-          <DateLabel>{dateTime}</DateLabel>
-        </Span>
-      </H2>
-      <EditButton onClick={editBrew}>
-        <Edit role="img" aria-label="Edit brew" />
-      </EditButton>
+      <Row>
+        <Title centre capitalise>
+          {bean}
+          <br />
+          <Span small>
+            <DateLabel>{dateTime}</DateLabel>
+          </Span>
+        </Title>
+        <EditButton onClick={editBrew}>
+          <Edit role="img" aria-label="Edit brew" />
+        </EditButton>
+      </Row>
       <BoxList>
         <Box centre capitalise icon={<CoffeePot role="img" />} label="method">
           {method}
