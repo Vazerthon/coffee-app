@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import {useHistory} from 'react-router';
+import { useHistory } from 'react-router';
 import styled from '@emotion/styled/macro';
 
 import BrewCard from '../components/BrewCard/BrewCard';
@@ -21,15 +21,17 @@ const AddBrew = styled(AddButton)`
   right: ${({ theme }) => theme.spacing.units(2)};
 `;
 
-const toBrewCard = (brew) => (
-  <Card key={brew.id} brew={brew} />
-)
+const makeToBrewCard = (editBrew) => (brew) => (
+  // eslint-disable-next-line react/destructuring-assignment
+  <Card key={brew.id} brew={brew} editBrew={() => editBrew(brew.id)} />
+);
 
 export default function Brews() {
   const { brews } = useContext(BrewsContext);
   const { routes } = useContext(SettingsContext);
   const history = useHistory();
   const goToAddPage = () => history.push(routes.add);
+  const toBrewCard = makeToBrewCard((id) => history.push(routes.makeEditPath(id)));
 
   const haveBrews = brews.length > 0;
 
@@ -49,5 +51,5 @@ export default function Brews() {
       )}
       <AddBrew role="button" onClick={goToAddPage} />
     </>
-  )
+  );
 }

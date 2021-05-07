@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { Button } from '../Buttons';
 import LabelledInput from './LabelledInput';
 
-import { brewType } from '../Types';
+import { brewType } from '../../Types';
 
 import {
   Beans,
@@ -30,18 +30,18 @@ const Column = styled.div`
 const brewIsValid = (brew) => !!brew.bean.trim() && !!brew.method.trim();
 
 export default function AddBrewForm({
-  defaultBrew,
-  addBrew,
-  onAddBrew,
+  initialBrew,
+  save,
+  onSave,
   beans,
   methods,
   techniques,
 }) {
-  const [brew, setBrew] = useState(defaultBrew);
+  const [brew, setBrew] = useState(initialBrew);
   const patchBrew = (key) => (value) => setBrew({ ...brew, [key]: value });
   const saveBrew = () => {
-    addBrew(brew);
-    onAddBrew();
+    save(brew);
+    onSave();
   };
 
   const formatDate = (date) => format(date, "yyyy-MM-dd'T'HH:mm");
@@ -135,9 +135,9 @@ export default function AddBrewForm({
 }
 
 AddBrewForm.propTypes = {
-  defaultBrew: brewType.isRequired,
-  addBrew: PropTypes.func.isRequired,
-  onAddBrew: PropTypes.func.isRequired,
+  initialBrew: brewType.isRequired,
+  save: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
   beans: PropTypes.arrayOf(PropTypes.string).isRequired,
   methods: PropTypes.arrayOf(PropTypes.string).isRequired,
   techniques: PropTypes.arrayOf(PropTypes.string).isRequired,
