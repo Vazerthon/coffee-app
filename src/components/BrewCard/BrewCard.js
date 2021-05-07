@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 
-import { brewType } from '../Types';
+import { brewType } from '../../Types';
 
 import { P, H2, Span } from '../Typography';
 import Time from '../Time';

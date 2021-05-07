@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { Button } from '../Buttons';
 import LabelledInput from './LabelledInput';
 
-import { brewType } from '../Types';
+import { brewType } from '../../Types';
 
 import {
   Beans,

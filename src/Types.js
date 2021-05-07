@@ -15,4 +15,6 @@ export const brewType = PropTypes.shape({
   brewTime: PropTypes.number,
   notes: PropTypes.string,
   dateTime: PropTypes.instanceOf(Date),
+  technique: PropTypes.string,
+  taste: PropTypes.number,
 });
