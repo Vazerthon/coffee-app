@@ -26,9 +26,9 @@ export default function Edit({ brewId }) {
     <>
       <H1>Update brew</H1>
       <AddBrewForm
-        defaultBrew={brew}
-        addBrew={updateBrew}
-        onAddBrew={navigateHome}
+        initialBrew={brew}
+        save={updateBrew}
+        onSave={navigateHome}
         beans={beans}
         methods={methods}
         techniques={techniques}

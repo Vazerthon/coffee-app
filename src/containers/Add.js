@@ -18,9 +18,9 @@ export default function Add() {
     <>
       <H1>Add a brew</H1>
       <AddBrewForm
-        defaultBrew={makeBrew()}
-        addBrew={addBrew}
-        onAddBrew={navigateHome}
+        initialBrew={makeBrew()}
+        save={addBrew}
+        onSave={navigateHome}
         beans={beans}
         methods={methods}
         techniques={techniques}
