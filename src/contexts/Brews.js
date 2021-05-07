@@ -76,6 +76,8 @@ export const BrewsProvider = ({ children }) => {
   const [storedBrews, setStoredBrews] = usePersistedState('brews', []);
   const brews = storedBrews.map(parseStoredBrew).sort(newestFirst);
   const addBrew = (brew) => setStoredBrews([...brews, brew]);
+  const updateBrew = (brew) => setStoredBrews([ ...brews.filter(b => b.id !== brew.id), brew ])
+
   const beans = getUniqueListOfBrewProp('bean', brews);
   const methods = getUniqueListOfBrewProp('method', brews);
   const techniques = getUniqueListOfBrewProp('technique', brews);
@@ -86,6 +88,7 @@ export const BrewsProvider = ({ children }) => {
     methods,
     techniques,
     addBrew,
+    updateBrew,
     makeBrew,
   };
 

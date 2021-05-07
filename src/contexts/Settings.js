@@ -7,6 +7,8 @@ const settings = {
   routes: {
     home: '/',
     add: '/add',
+    edit: '/edit/:id',
+    makeEditPath: (id) => `/edit/${id}`,
   },
 };
 

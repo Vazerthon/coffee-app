@@ -6,6 +6,7 @@ import { SettingsContext } from './contexts/Settings';
 
 import Brews from './containers/Brews';
 import Add from './containers/Add';
+import Edit from './containers/Edit';
 
 import Nav from './components/Nav';
 
@@ -27,6 +28,9 @@ function Routes() {
           </Route>
           <Route path={routes.add} exact>
             <Add />
+          </Route>
+          <Route path={routes.edit} exact>
+            {({ match }) => <Edit brewId={match.params.id} />}
           </Route>
         </Switch>
       </Container>

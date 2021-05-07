@@ -11,7 +11,7 @@ import {
 } from 'react-icons/gi';
 
 import { IoMdDocument, IoMdClose } from 'react-icons/io';
-import { GoCalendar } from 'react-icons/go';
+import { GoCalendar, GoPencil } from 'react-icons/go';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 
 export const Beans = GiCoffeeBeans;
@@ -27,3 +27,4 @@ export const Calendar = GoCalendar;
 export const Menu = GiHamburgerMenu;
 export const Close = IoMdClose;
 export const Technique = GiCog;
+export const Edit = GoPencil;

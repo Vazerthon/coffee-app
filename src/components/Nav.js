@@ -4,7 +4,7 @@ import FocusTrap from 'focus-trap-react';
 import styled from '@emotion/styled';
 import { Menu, Close } from './Icons';
 
-import { routesType } from './Types';
+import { routesType } from '../Types';
 
 const List = styled.ul`
   list-style: none;

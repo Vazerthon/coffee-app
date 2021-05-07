@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 
-import { brewType } from '../Types';
+import { brewType } from '../../Types';
 
 import { P, H2, Span } from '../Typography';
 import Time from '../Time';
@@ -14,16 +14,31 @@ import {
   Timer,
   Grinder,
   Notes,
+  Edit,
 } from '../Icons';
 
 import BoxList, { Box } from './BoxList';
 import DateLabel from './DateLabel';
+import { Button } from '../Buttons';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
   padding: ${({ theme }) => theme.spacing.units(4)};
   border-radius: ${({ theme }) => theme.spacing.units(1)};
   box-shadow: 0 0 ${({ theme }) => theme.spacing.units(1)};
+  position: relative;
+`;
+
+const EditButton = styled(Button)`
+  position: absolute;
+  top: ${({ theme }) => theme.spacing.units(4)};
+  right: ${({ theme }) => theme.spacing.units(4)};
+  border-radius: 50%;
+  width: ${({ theme }) => theme.spacing.units(8)};
+  height: ${({ theme }) => theme.spacing.units(8)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default function BrewCard({
@@ -39,6 +54,7 @@ export default function BrewCard({
     dateTime,
   },
   className,
+  editBrew,
 }) {
   return (
     <Container className={className}>
@@ -49,6 +65,9 @@ export default function BrewCard({
           <DateLabel>{dateTime}</DateLabel>
         </Span>
       </H2>
+      <EditButton onClick={editBrew}>
+        <Edit role="img" aria-label="Edit brew" />
+      </EditButton>
       <BoxList>
         <Box centre capitalise icon={<CoffeePot role="img" />} label="method">
           {method}
@@ -91,6 +110,7 @@ export default function BrewCard({
 BrewCard.propTypes = {
   brew: brewType.isRequired,
   className: PropTypes.string,
+  editBrew: PropTypes.func.isRequired,
 };
 
 BrewCard.defaultProps = {
