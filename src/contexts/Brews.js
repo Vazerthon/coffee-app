@@ -67,8 +67,9 @@ const parseStoredBrew = ({
 const prop = (key) => (obj) => obj[key];
 const lowercase = (string) => string.toLowerCase();
 const unique = (array) => [...new Set(array)];
+const noFalsey = Boolean;
 const getUniqueListOfBrewProp = (propName, brews) =>
-  unique(brews.map(prop(propName)).map(lowercase));
+  unique(brews.map(prop(propName)).filter(noFalsey).map(lowercase));
 const newestFirst = (a, b) => b.dateTime - a.dateTime;
 
 export const BrewsProvider = ({ children }) => {
