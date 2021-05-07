@@ -46,6 +46,7 @@ const MenuButton = styled.button`
 const Container = styled.nav`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const IconRow = styled.div`

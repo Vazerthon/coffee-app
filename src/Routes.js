@@ -10,7 +10,12 @@ import Edit from './containers/Edit';
 
 import Nav from './components/Nav';
 
-const Container = styled.div`
+const AppContainer = styled.div`
+  max-width: ${({ theme }) => theme.spacing.units(200)};
+  margin: 0 auto;
+`;
+
+const ContentContainer = styled.div`
   padding: ${({ theme }) => theme.spacing.units(2)};
 `;
 
@@ -19,9 +24,9 @@ function Routes() {
   const {pathname } = global.window.location
 
   return (
-    <>
+    <AppContainer>
       <Nav routes={routes} currentPath={pathname} />
-      <Container>
+      <ContentContainer>
         <Switch>
           <Route path={routes.home} exact>
             <Brews />
@@ -33,8 +38,8 @@ function Routes() {
             {({ match }) => <Edit brewId={match.params.id} />}
           </Route>
         </Switch>
-      </Container>
-    </>
+      </ContentContainer>
+    </AppContainer>
   );
 }
 
