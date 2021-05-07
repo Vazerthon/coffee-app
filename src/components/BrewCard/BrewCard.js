@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { brewType } from '../Types';
 
 import { P, H2, Span } from '../Typography';
+import Time from '../Time';
+
 import {
   CoffeePot,
   Scales,
@@ -15,7 +17,6 @@ import {
 } from '../Icons';
 
 import BoxList, { Box } from './BoxList';
-import Time from './Time';
 import DateLabel from './DateLabel';
 
 const Container = styled.div`

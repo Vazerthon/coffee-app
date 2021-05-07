@@ -3,9 +3,10 @@ import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { Span } from './Typography';
-import { Button } from './Buttons';
-import { brewType } from './Types';
+import { Button } from '../Buttons';
+import LabelledInput from './LabelledInput';
+
+import { brewType } from '../Types';
 
 import {
   Beans,
@@ -18,76 +19,13 @@ import {
   Notes,
   Calendar,
   Technique,
-} from './Icons';
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  text-transform: capitalize;
-  margin-bottom: ${({ theme }) => theme.spacing.units(3)};
-`;
-
-const Input = styled.input`
-  font-size: ${({ theme }) => theme.spacing.units(4)};
-  font-family: ${({ theme }) => theme.typography.fontFamilyBody};
-  height: ${({ theme }) => theme.spacing.units(6)};
-  color: ${({ theme }) => theme.colour.primary};
-`;
+} from '../Icons';
+import Time from '../Time';
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const IconLabel = styled(Span)`
-  display: flex;
-`;
-
-const IconWrapper = styled(Span)`
-  margin-left: ${({ theme }) => theme.spacing.units(2)};
-`;
-
-const LabelledInput = ({ label, value, onChange, type, icon, list }) => {
-  const handleChange = (e) => onChange(e.currentTarget.value);
-  return (
-    <Label>
-      <IconLabel>
-        {label}
-        <IconWrapper>{icon}</IconWrapper>
-      </IconLabel>
-      <Input
-        type={type}
-        value={value}
-        onChange={handleChange}
-        list={list ? label : undefined}
-      />
-      {list && (
-        <datalist id={label}>
-          {list.map((option) => (
-            <option key={option}>{option}</option>
-          ))}
-        </datalist>
-      )}
-    </Label>
-  );
-};
-
-LabelledInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-  ]).isRequired,
-  onChange: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
-  icon: PropTypes.node.isRequired,
-  list: PropTypes.arrayOf(PropTypes.string),
-};
-
-LabelledInput.defaultProps = {
-  list: undefined,
-};
 
 const brewIsValid = (brew) => !!brew.bean.trim() && !!brew.method.trim();
 
@@ -160,9 +98,12 @@ export default function AddBrewForm({
       />
       <LabelledInput
         icon={<Timer />}
-        type="number"
+        type="range"
         label="brew time"
         value={brew.brewTime}
+        min={0}
+        max={1000}
+        display={<Time>{Number.parseInt(brew.brewTime, 10)}</Time>}
         onChange={patchBrew('brewTime')}
       />
       <LabelledInput
