@@ -8,11 +8,11 @@ import {
   GiThermometerHot,
   GiHamburgerMenu,
   GiCog,
+  GiTongue,
 } from 'react-icons/gi';
 
-import { IoMdDocument, IoMdClose } from 'react-icons/io';
-import { GoCalendar, GoPencil } from 'react-icons/go';
-import { BsFillPlusCircleFill } from 'react-icons/bs';
+import { IoMdDocument, IoMdClose, } from 'react-icons/io';
+import { GoCalendar, GoPencil, GoPlus } from 'react-icons/go';
 
 export const Beans = GiCoffeeBeans;
 export const CoffeePot = GiCoffeePot;
@@ -22,9 +22,10 @@ export const Thermometer = GiThermometerHot;
 export const Timer = GiSandsOfTime;
 export const Grinder = GiManualMeatGrinder;
 export const Notes = IoMdDocument;
-export const PlusCircle = BsFillPlusCircleFill;
+export const Plus = GoPlus;
 export const Calendar = GoCalendar;
 export const Menu = GiHamburgerMenu;
 export const Close = IoMdClose;
 export const Technique = GiCog;
 export const Edit = GoPencil;
+export const Taste = GiTongue;

@@ -19,8 +19,10 @@ import {
   Notes,
   Calendar,
   Technique,
+  Taste,
 } from '../Icons';
 import Time from '../Time';
+import TasteLabel from '../TasteLabel';
 
 const Column = styled.div`
   display: flex;
@@ -28,6 +30,7 @@ const Column = styled.div`
 `;
 
 const brewIsValid = (brew) => !!brew.bean.trim() && !!brew.method.trim();
+const formatDate = (date) => format(date, "yyyy-MM-dd'T'HH:mm");
 
 export default function AddBrewForm({
   initialBrew,
@@ -43,8 +46,7 @@ export default function AddBrewForm({
     save(brew);
     onSave();
   };
-
-  const formatDate = (date) => format(date, "yyyy-MM-dd'T'HH:mm");
+  
   const patchBrewDateTime = (dateString) =>
     patchBrew('dateTime')(new Date(dateString));
 
@@ -113,6 +115,16 @@ export default function AddBrewForm({
         value={brew.technique}
         onChange={patchBrew('technique')}
         list={techniques}
+      />
+      <LabelledInput
+        icon={<Taste />}
+        type="range"
+        label="taste"
+        value={brew.taste}
+        onChange={patchBrew('taste')}
+        min={-10}
+        max={10}
+        display={<TasteLabel>{Number.parseInt(brew.taste, 10)}</TasteLabel>}
       />
       <LabelledInput
         icon={<Notes />}

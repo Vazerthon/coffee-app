@@ -14,30 +14,17 @@ import {
   Timer,
   Grinder,
   Notes,
-  Edit,
 } from '../Icons';
 
 import BoxList, { Box } from './BoxList';
 import DateLabel from './DateLabel';
-import { Button } from '../Buttons';
+import { EditButton } from '../Buttons';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
   padding: ${({ theme }) => theme.spacing.units(2)};
   border-radius: ${({ theme }) => theme.spacing.units(1)};
   box-shadow: 0 0 ${({ theme }) => theme.spacing.units(1)};
-`;
-
-const EditButton = styled(Button)`
-  border-radius: 50%;
-  min-width: ${({ theme }) => theme.spacing.units(8)};
-  max-width: ${({ theme }) => theme.spacing.units(8)};
-  min-height: ${({ theme }) => theme.spacing.units(8)};
-  max-height: ${({ theme }) => theme.spacing.units(8)};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: ${({ theme }) => theme.spacing.units(4)};
 `;
 
 const Row = styled.div`
@@ -73,9 +60,7 @@ export default function BrewCard({
             <DateLabel>{dateTime}</DateLabel>
           </Span>
         </Title>
-        <EditButton onClick={editBrew}>
-          <Edit role="img" aria-label="Edit brew" />
-        </EditButton>
+        <EditButton onClick={editBrew} />
       </Row>
       <BoxList>
         <Box centre capitalise icon={<CoffeePot role="img" />} label="method">
