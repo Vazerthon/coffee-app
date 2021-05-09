@@ -107,6 +107,12 @@ export default function Nav({ routes, currentPath }) {
             onClick={closeDrawer}
             active={currentPath === routes.add}
           />
+          <NavListItem
+            href={routes.about}
+            label="About"
+            onClick={closeDrawer}
+            active={currentPath === routes.about}
+          />
         </List>
       </Container>
     </Wrapper>

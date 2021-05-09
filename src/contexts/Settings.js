@@ -6,6 +6,7 @@ export const SettingsContext = createContext();
 const settings = {
   routes: {
     home: '/',
+    about: '/about',
     add: '/add',
     edit: '/edit/:id',
     makeEditPath: (id) => `/edit/${id}`,

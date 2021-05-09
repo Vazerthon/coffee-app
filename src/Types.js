@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 export const routesType = PropTypes.shape({
   home: PropTypes.string,
   add: PropTypes.string,
+  about: PropTypes.string,
 })
 
 export const brewType = PropTypes.shape({
