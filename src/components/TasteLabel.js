@@ -9,11 +9,10 @@ const inBalancedRange = inRange(-2, 2);
 const inSlightlyBitterRange = inRange(3, 4);
 const inBitterRange = inRange(5, 7);
 const inVeryBitterRange = inRange(8, 10);
-
-export default function TasteLabel({ children }) {
+export default function TasteLabel({ children, className }) {
 
   return (
-    <Span>
+    <Span className={className}>
       { children === 0 && 'perfect' ||
         inVerySourRange(children) && 'very sour' ||
         inSourRange(children) && 'sour' ||
@@ -29,4 +28,9 @@ export default function TasteLabel({ children }) {
 
 TasteLabel.propTypes = {
   children: PropTypes.number.isRequired,
+  className: PropTypes.string,
 };
+
+TasteLabel.defaultProps = {
+  className: undefined,
+}

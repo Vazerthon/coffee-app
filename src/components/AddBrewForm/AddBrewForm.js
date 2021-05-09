@@ -29,6 +29,12 @@ const Column = styled.div`
   flex-direction: column;
 `;
 
+const FixedWidthTasteLabel = styled(TasteLabel)`
+  min-width: ${({ theme }) => theme.spacing.units(40)};
+  white-space: nowrap;
+  text-align: right;
+`;
+
 const brewIsValid = (brew) => !!brew.bean.trim() && !!brew.method.trim();
 const formatDate = (date) => format(date, "yyyy-MM-dd'T'HH:mm");
 
@@ -46,7 +52,7 @@ export default function AddBrewForm({
     save(brew);
     onSave();
   };
-  
+
   const patchBrewDateTime = (dateString) =>
     patchBrew('dateTime')(new Date(dateString));
 
@@ -124,7 +130,11 @@ export default function AddBrewForm({
         onChange={patchBrew('taste')}
         min={-10}
         max={10}
-        display={<TasteLabel>{Number.parseInt(brew.taste, 10)}</TasteLabel>}
+        display={
+          <FixedWidthTasteLabel>
+            {Number.parseInt(brew.taste, 10)}
+          </FixedWidthTasteLabel>
+        }
       />
       <LabelledInput
         icon={<Notes />}
@@ -141,7 +151,13 @@ export default function AddBrewForm({
         onChange={patchBrewDateTime}
       />
 
-      <Button onClick={saveBrew} disabled={!enableSaveButton} aria-label="Save brew">Save brew</Button>
+      <Button
+        onClick={saveBrew}
+        disabled={!enableSaveButton}
+        aria-label="Save brew"
+      >
+        Save brew
+      </Button>
     </Column>
   );
 }
