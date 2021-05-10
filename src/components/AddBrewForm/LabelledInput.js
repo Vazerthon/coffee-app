@@ -2,6 +2,7 @@ import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 
 import { Span } from '../Typography';
+import DataList from '../DataList';
 
 const Label = styled.label`
   display: flex;
@@ -61,13 +62,7 @@ export default function LabelledInput({
         />
         {display}
       </Row>
-      {list && (
-        <datalist id={label}>
-          {list.map((option) => (
-            <option key={option}>{option}</option>
-          ))}
-        </datalist>
-      )}
+      {list && <DataList id={label} list={list} />}
     </Label>
   );
 }

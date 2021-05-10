@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import usePersistedState from '../hooks/usePersistedState';
@@ -64,6 +64,8 @@ const parseStoredBrew = ({
   ...rest,
 });
 
+const areEqual = (a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }) === 0;
+const alwaysTrue = () => true;
 const prop = (key) => (obj) => obj[key];
 const lowercase = (string) => string.toLowerCase();
 const unique = (array) => [...new Set(array)];
@@ -71,12 +73,25 @@ const noFalsey = Boolean;
 const getUniqueListOfBrewProp = (propName, brews) =>
   unique(brews.map(prop(propName)).filter(noFalsey).map(lowercase));
 const newestFirst = (a, b) => b.dateTime - a.dateTime;
+const makeFilterByBean = (beanFilter) => ({ bean }) => areEqual(beanFilter, bean);
+const makeFilterByMethod = (methodFilter) => ({ method }) => areEqual(methodFilter, method);
 
 export const BrewsProvider = ({ children }) => {
   const [storedBrews, setStoredBrews] = usePersistedState('brews', []);
-  const brews = storedBrews.map(parseStoredBrew).sort(newestFirst);
+  const [beanFilter, setBeanFilter] = useState('');
+  const [methodFilter, setMethodFilter] = useState('');
+
+  const filterByBean = beanFilter ? makeFilterByBean(beanFilter) : alwaysTrue;
+  const filterByMethod = methodFilter ? makeFilterByMethod(methodFilter) : alwaysTrue;
+
+  const brews = storedBrews
+    .map(parseStoredBrew)
+    .filter(filterByBean)
+    .filter(filterByMethod)
+    .sort(newestFirst);
   const addBrew = (brew) => setStoredBrews([...brews, brew]);
-  const updateBrew = (brew) => setStoredBrews([ ...brews.filter(b => b.id !== brew.id), brew ])
+  const updateBrew = (brew) =>
+    setStoredBrews([...brews.filter((b) => b.id !== brew.id), brew]);
 
   const beans = getUniqueListOfBrewProp('bean', brews);
   const methods = getUniqueListOfBrewProp('method', brews);
@@ -90,6 +105,10 @@ export const BrewsProvider = ({ children }) => {
     addBrew,
     updateBrew,
     makeBrew,
+    beanFilter,
+    setBeanFilter,
+    methodFilter,
+    setMethodFilter,
   };
 
   return (
