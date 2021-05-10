@@ -31,7 +31,7 @@ const makeBrew = ({
   taste,
   notes,
   dateTime,
-} = defaultBrew) => ({
+}) => ({
   id: uuidv4(),
   bean,
   method,
@@ -107,6 +107,7 @@ export const BrewsProvider = ({ children }) => {
     techniques,
     addBrew,
     updateBrew,
+    defaultBrew,
     makeBrew,
     beanFilter,
     setBeanFilter,
