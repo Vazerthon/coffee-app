@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import { Menu, Close } from './Icons';
 
 import { routesType } from '../Types';
+import Link from './Link';
 
 const List = styled.ul`
   list-style: none;
@@ -28,8 +29,7 @@ const ListItem = styled.li`
   margin: 0 ${({ theme }) => theme.spacing.units(4)};
 `;
 
-const NavLink = styled.a`
-  color: ${({ theme }) => theme.colour.primary};
+const NavLink = styled(Link)`
   text-decoration: none;
   font-size: ${({ theme }) => theme.spacing.units(6)};
   line-height: ${({ theme }) => theme.spacing.units(10)};
