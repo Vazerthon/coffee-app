@@ -1,4 +1,11 @@
+import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
+
+const StyledSelect = styled.select`
+  background: none;
+  height: ${({ theme }) => theme.spacing.units(8)};
+  border-radius: ${({ theme }) => theme.spacing.units(1)};
+`;
 
 export default function Select({
   className,
@@ -10,14 +17,14 @@ export default function Select({
   const handleChange = ({ target }) => onChange(target.value);
 
   return (
-    <select className={className} onChange={handleChange} value={value}>
+    <StyledSelect className={className} onChange={handleChange} value={value}>
       {blankValue && <option value="">{blankValue}</option>}
       {list.map((option) => (
         <option key={option} value={option}>
           {option}
         </option>
       ))}
-    </select>
+    </StyledSelect>
   );
 }
 
