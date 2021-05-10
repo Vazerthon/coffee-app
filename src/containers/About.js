@@ -1,11 +1,11 @@
 import Link from '../components/Link';
-import { H1, H2, P } from '../components/Typography';
+import { H2, P } from '../components/Typography';
 import Welcome from '../components/Welcome';
+import Wrapper from './Wrapper';
 
 export default function About() {
   return (
-    <>
-      <H1>About</H1>
+    <Wrapper title="About">
       <Welcome />
       <hr />
       <H2>Feedback</H2>
@@ -25,6 +25,6 @@ export default function About() {
         <br />
         Still in early development, expect a few rough edges
       </P>
-    </>
+    </Wrapper>
   );
 }

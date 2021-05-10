@@ -55,12 +55,14 @@ export default function Brews({
           value={beanFilter}
           onChange={setBeanFilter}
           blankValue="Filter by bean..."
+          label="Filter by bean"
         />
         <Dropdown
           list={methods}
           value={methodFilter}
           onChange={setMethodFilter}
           blankValue="Filter by method..."
+          label="Filter by method"
         />
       </Column>
       {haveBrews && brews.map(toBrewCard)}

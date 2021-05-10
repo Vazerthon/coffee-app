@@ -14,11 +14,12 @@ export default function Select({
   value,
   blankValue,
   onChange,
+  label,
 }) {
   const handleChange = ({ target }) => onChange(target.value);
 
   return (
-    <StyledSelect className={className} onChange={handleChange} value={value}>
+    <StyledSelect className={className} onChange={handleChange} value={value} aria-label={label}>
       {blankValue && <option value="">{blankValue}</option>}
       {list.map((option) => (
         <option key={option} value={option}>
@@ -35,6 +36,7 @@ Select.propTypes = {
   value: PropTypes.string.isRequired,
   blankValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 Select.defaultProps = {

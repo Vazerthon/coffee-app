@@ -6,6 +6,7 @@ import { Menu, Close } from './Icons';
 
 import { routesType } from '../Types';
 import Link from './Link';
+import { H1 } from './Typography';
 
 const List = styled.ul`
   list-style: none;
@@ -51,11 +52,13 @@ const Container = styled.nav`
 
 const IconRow = styled.div`
   display: flex;
-  flex-direction: row-reverse;
   background-color: ${({ theme }) => theme.colour.secondary};
   height: ${({ theme }) => theme.spacing.units(12)};
   padding-top: ${({ theme }) => theme.spacing.units(2)};
   padding-right: ${({ theme }) => theme.spacing.units(2)};
+  padding-left: ${({ theme }) => theme.spacing.units(2)};
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const NavListItem = ({ href, active, label, onClick }) => (
@@ -73,7 +76,7 @@ NavListItem.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default function Nav({ routes, currentPath }) {
+export default function Nav({ routes, currentPath, title }) {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const toggleDrawer = () => setMobileDrawerOpen(!mobileDrawerOpen);
   const closeDrawer = () => setMobileDrawerOpen(false);
@@ -83,13 +86,16 @@ export default function Nav({ routes, currentPath }) {
     <Wrapper>
       <Container open={mobileDrawerOpen}>
         <IconRow>
+          <H1>{title}</H1>
           <MenuButton
             type="button"
             onClick={toggleDrawer}
             aria-label={
-              mobileDrawerOpen ? 'close navigation menu' : 'open navigation menu'
+              mobileDrawerOpen
+                ? 'close navigation menu'
+                : 'open navigation menu'
             }
-            >
+          >
             {mobileDrawerOpen && <Close />}
             {!mobileDrawerOpen && <Menu />}
           </MenuButton>
@@ -122,4 +128,5 @@ export default function Nav({ routes, currentPath }) {
 Nav.propTypes = {
   routes: routesType.isRequired,
   currentPath: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };

@@ -6,7 +6,7 @@ import { SettingsContext } from '../contexts/Settings';
 
 import BrewsComponent from '../components/features/Brews';
 import Welcome from '../components/Welcome';
-import { H1 } from '../components/Typography';
+import Wrapper from './Wrapper';
 
 export default function Brews() {
   const {
@@ -27,29 +27,21 @@ export default function Brews() {
   const haveBrews = allBrews.length > 0;
 
   return (
-    <>
-      {!haveBrews && (
-        <>
-          <H1>Welcome!</H1>
-          <Welcome />
-        </>
-      )}
+    <Wrapper title={haveBrews ? 'Brews' : 'Welcome!'}>
+      {!haveBrews && <Welcome />}
       {haveBrews && (
-        <>
-          <H1>Brews</H1>
-          <BrewsComponent
-            brews={filteredBrews}
-            beans={beans}
-            methods={methods}
-            beanFilter={beanFilter}
-            setBeanFilter={setBeanFilter}
-            methodFilter={methodFilter}
-            setMethodFilter={setMethodFilter}
-            goToAddPage={goToAddPage}
-            goToEditPage={goToEditPage}
-          />
-        </>
+        <BrewsComponent
+          brews={filteredBrews}
+          beans={beans}
+          methods={methods}
+          beanFilter={beanFilter}
+          setBeanFilter={setBeanFilter}
+          methodFilter={methodFilter}
+          setMethodFilter={setMethodFilter}
+          goToAddPage={goToAddPage}
+          goToEditPage={goToEditPage}
+        />
       )}
-    </>
+    </Wrapper>
   );
 }

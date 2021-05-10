@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
 import AddBrewForm from '../components/AddBrewForm/AddBrewForm';
-import { H1 } from '../components/Typography';
+import Wrapper from './Wrapper';
 
 export default function Add() {
   const history = useHistory();
@@ -27,8 +27,7 @@ export default function Add() {
   });
 
   return (
-    <>
-      <H1>Add a brew</H1>
+    <Wrapper title="Add a brew">
       <AddBrewForm
         initialBrew={initialBrew}
         save={addBrew}
@@ -37,6 +36,6 @@ export default function Add() {
         methods={methods}
         techniques={techniques}
       />
-    </>
+    </Wrapper>
   );
 }

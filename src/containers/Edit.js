@@ -6,7 +6,8 @@ import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
 
 import AddBrewForm from '../components/AddBrewForm/AddBrewForm';
-import { H1, P } from '../components/Typography';
+import { P } from '../components/Typography';
+import Wrapper from './Wrapper';
 
 export default function Edit({ brewId }) {
   const history = useHistory();
@@ -19,15 +20,15 @@ export default function Edit({ brewId }) {
   const brew = allBrews.find((b) => b.id === brewId);
 
   if (!brew) {
-    return <>
-      <H1>Brew not found</H1>
-      <P>Sorry, no brew with id &apos;{brewId}&apos; could be found.</P>
-    </>;
+    return (
+      <Wrapper title="Brew not found">
+        <P>Sorry, no brew with id &apos;{brewId}&apos; could be found.</P>
+      </Wrapper>
+    );
   }
 
   return (
-    <>
-      <H1>Update brew</H1>
+    <Wrapper title="Update a brew">
       <AddBrewForm
         initialBrew={brew}
         save={updateBrew}
@@ -36,7 +37,7 @@ export default function Edit({ brewId }) {
         methods={methods}
         techniques={techniques}
       />
-    </>
+    </Wrapper>
   );
 }
 
