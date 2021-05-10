@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import BrewCard from '../BrewCard/BrewCard';
 import { AddButton } from '../Buttons';
 
-import { H1 } from '../Typography';
-import Welcome from '../Welcome';
 import { brewType } from '../../Types';
 import Select from '../Select';
+import { P } from '../Typography';
 
 const Card = styled(BrewCard)`
   margin-top: ${({ theme }) => theme.spacing.units(1)};
@@ -18,15 +17,6 @@ const AddBrew = styled(AddButton)`
   position: fixed;
   bottom: ${({ theme }) => theme.spacing.units(2)};
   right: ${({ theme }) => theme.spacing.units(2)};
-`;
-
-const Title = styled(H1)`
-  margin: 0;
-`;
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const makeToBrewCard = (editBrew) => (brew) => (
@@ -50,33 +40,23 @@ export default function Brews({
 
   return (
     <>
-      {haveBrews && (
-        <>
-          <Row>
-            <Title>Brews</Title>
-            <div>
-              <Select
-                list={beans}
-                value={beanFilter}
-                onChange={setBeanFilter}
-                blankValue="Filter by bean..."
-              />
-              <Select
-                list={methods}
-                value={methodFilter}
-                onChange={setMethodFilter}
-                blankValue="Filter by method..."
-              />
-            </div>
-          </Row>
-          {brews.map(toBrewCard)}
-        </>
-      )}
+      <Select
+        list={beans}
+        value={beanFilter}
+        onChange={setBeanFilter}
+        blankValue="Filter by bean..."
+      />
+      <Select
+        list={methods}
+        value={methodFilter}
+        onChange={setMethodFilter}
+        blankValue="Filter by method..."
+      />
+      {haveBrews && brews.map(toBrewCard)}
       {!haveBrews && (
-        <>
-          <H1>Welcome!</H1>
-          <Welcome />
-        </>
+        <P>
+          No brews match your chosen filters
+        </P>
       )}
       <AddBrew role="button" onClick={goToAddPage} />
     </>

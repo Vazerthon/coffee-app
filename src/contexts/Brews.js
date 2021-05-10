@@ -64,7 +64,8 @@ const parseStoredBrew = ({
   ...rest,
 });
 
-const areEqual = (a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }) === 0;
+const areEqual = (a, b) =>
+  a.localeCompare(b, undefined, { sensitivity: 'base' }) === 0;
 const alwaysTrue = () => true;
 const prop = (key) => (obj) => obj[key];
 const lowercase = (string) => string.toLowerCase();
@@ -73,8 +74,10 @@ const noFalsey = Boolean;
 const getUniqueListOfBrewProp = (propName, brews) =>
   unique(brews.map(prop(propName)).filter(noFalsey).map(lowercase));
 const newestFirst = (a, b) => b.dateTime - a.dateTime;
-const makeFilterByBean = (beanFilter) => ({ bean }) => areEqual(beanFilter, bean);
-const makeFilterByMethod = (methodFilter) => ({ method }) => areEqual(methodFilter, method);
+const makeFilterByBean = (beanFilter) => ({ bean }) =>
+  areEqual(beanFilter, bean);
+const makeFilterByMethod = (methodFilter) => ({ method }) =>
+  areEqual(methodFilter, method);
 
 export const BrewsProvider = ({ children }) => {
   const [storedBrews, setStoredBrews] = usePersistedState('brews', []);
@@ -82,23 +85,23 @@ export const BrewsProvider = ({ children }) => {
   const [methodFilter, setMethodFilter] = useState('');
 
   const filterByBean = beanFilter ? makeFilterByBean(beanFilter) : alwaysTrue;
-  const filterByMethod = methodFilter ? makeFilterByMethod(methodFilter) : alwaysTrue;
+  const filterByMethod = methodFilter
+    ? makeFilterByMethod(methodFilter)
+    : alwaysTrue;
 
-  const brews = storedBrews
-    .map(parseStoredBrew)
-    .filter(filterByBean)
-    .filter(filterByMethod)
-    .sort(newestFirst);
-  const addBrew = (brew) => setStoredBrews([...brews, brew]);
+  const allBrews = storedBrews.map(parseStoredBrew).sort(newestFirst);
+  const filteredBrews = allBrews.filter(filterByBean).filter(filterByMethod);
+  const addBrew = (brew) => setStoredBrews([...allBrews, brew]);
   const updateBrew = (brew) =>
-    setStoredBrews([...brews.filter((b) => b.id !== brew.id), brew]);
+    setStoredBrews([...allBrews.filter((b) => b.id !== brew.id), brew]);
 
-  const beans = getUniqueListOfBrewProp('bean', brews);
-  const methods = getUniqueListOfBrewProp('method', brews);
-  const techniques = getUniqueListOfBrewProp('technique', brews);
+  const beans = getUniqueListOfBrewProp('bean', allBrews);
+  const methods = getUniqueListOfBrewProp('method', allBrews);
+  const techniques = getUniqueListOfBrewProp('technique', allBrews);
 
   const value = {
-    brews,
+    allBrews,
+    filteredBrews,
     beans,
     methods,
     techniques,

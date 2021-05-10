@@ -10,13 +10,13 @@ import { H1, P } from '../components/Typography';
 
 export default function Edit({ brewId }) {
   const history = useHistory();
-  const { brews, beans, methods, techniques, updateBrew } = useContext(
+  const { allBrews, beans, methods, techniques, updateBrew } = useContext(
     BrewsContext,
   );
   const { routes } = useContext(SettingsContext);
   const navigateHome = () => history.push(routes.home);
 
-  const brew = brews.find((b) => b.id === brewId);
+  const brew = allBrews.find((b) => b.id === brewId);
 
   if (!brew) {
     return <>
