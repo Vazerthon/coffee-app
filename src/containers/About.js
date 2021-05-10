@@ -35,7 +35,7 @@ export default function About() {
       <H2>Coming soon...</H2>
       <ul>
         <li>Export and import data (for backup)</li>
-        <li>Charts to show changse in brew data over time</li>
+        <li>Charts to show changes in brew data over time</li>
       </ul>
     </Wrapper>
   );
