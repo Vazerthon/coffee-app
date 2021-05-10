@@ -21,10 +21,22 @@ export default function About() {
       <hr />
       <H2>Version</H2>
       <P>
-        v0.1.0
+        v1.0.0
         <br />
-        Still in early development, expect a few rough edges
+        Still in early development, expect a few rough edges.
       </P>
+      <hr />
+      <H2>Features</H2>
+      <ul>
+        <li>Record and edit brews</li>
+        <li>Filter by bean and brew method</li>
+      </ul>
+      <hr />
+      <H2>Coming soon...</H2>
+      <ul>
+        <li>Export and import data (for backup)</li>
+        <li>Charts to show changse in brew data over time</li>
+      </ul>
     </Wrapper>
   );
 }
