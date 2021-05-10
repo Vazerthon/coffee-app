@@ -19,6 +19,15 @@ const AddBrew = styled(AddButton)`
   right: ${({ theme }) => theme.spacing.units(2)};
 `;
 
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Dropdown = styled(Select)`
+  margin-bottom: ${({ theme }) => theme.spacing.units(2)};
+`;
+
 const makeToBrewCard = (editBrew) => (brew) => (
   // eslint-disable-next-line react/destructuring-assignment
   <Card key={brew.id} brew={brew} editBrew={() => editBrew(brew.id)} />
@@ -40,24 +49,22 @@ export default function Brews({
 
   return (
     <>
-      <Select
-        list={beans}
-        value={beanFilter}
-        onChange={setBeanFilter}
-        blankValue="Filter by bean..."
-      />
-      <Select
-        list={methods}
-        value={methodFilter}
-        onChange={setMethodFilter}
-        blankValue="Filter by method..."
-      />
+      <Column>
+        <Dropdown
+          list={beans}
+          value={beanFilter}
+          onChange={setBeanFilter}
+          blankValue="Filter by bean..."
+        />
+        <Dropdown
+          list={methods}
+          value={methodFilter}
+          onChange={setMethodFilter}
+          blankValue="Filter by method..."
+        />
+      </Column>
       {haveBrews && brews.map(toBrewCard)}
-      {!haveBrews && (
-        <P>
-          No brews match your chosen filters
-        </P>
-      )}
+      {!haveBrews && <P>Looks like you&apos;ve never made a {methodFilter} brew with {beanFilter} beans</P>}
       <AddBrew role="button" onClick={goToAddPage} />
     </>
   );

@@ -1,19 +1,28 @@
 import PropTypes from 'prop-types';
 
-export default function Select({ list, value, blankValue, onChange }) {
+export default function Select({
+  className,
+  list,
+  value,
+  blankValue,
+  onChange,
+}) {
   const handleChange = ({ target }) => onChange(target.value);
-  
+
   return (
-    <select onChange={handleChange} value={value} >
-      { blankValue && <option value="">{blankValue}</option> }
+    <select className={className} onChange={handleChange} value={value}>
+      {blankValue && <option value="">{blankValue}</option>}
       {list.map((option) => (
-        <option key={option} value={option}>{option}</option>
+        <option key={option} value={option}>
+          {option}
+        </option>
       ))}
     </select>
   );
 }
 
 Select.propTypes = {
+  className: PropTypes.string,
   list: PropTypes.arrayOf(PropTypes.string).isRequired,
   value: PropTypes.string.isRequired,
   blankValue: PropTypes.string,
@@ -21,5 +30,6 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  className: undefined,
   blankValue: undefined,
-}
+};
