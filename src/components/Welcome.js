@@ -15,13 +15,14 @@ export default function Welcome() {
       <MassiveBeans role="img" />
       <P>
         Welcome to Coffee Chronicles, your coffee brewing diary and logbook that
-        will help you to dial in the perfect cup and remember variables between
-        different brew methods and beans.
+        will help you to dial in the perfect cup and keep track of variables
+        between different brew methods and beans.
       </P>
       <P>
         To get started, brew some coffee and record it here. With each brew,
-        record weight, temperature and other variables. Over time you&apos;ll
-        build a picture of the settings that work best for you.
+        record weight, temperature and other variables, and take note of the
+        flavour profile of your brew. Over time you&apos;ll build a picture of
+        the settings that work best for you.
       </P>
       <P>Happy brewing!</P>
     </>

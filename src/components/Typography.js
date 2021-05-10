@@ -11,6 +11,7 @@ export const Span = styled.span`
 
 export const P = styled.p`
   margin: 0;
+  margin-bottom: ${({ theme }) => theme.spacing.units(2)};
   font-family: ${({ theme }) => theme.typography.fontFamilyBody};
   ${({ uppercase }) => uppercase && 'text-transform: uppercase;'}
   ${({ centre }) => centre && 'text-align: center;'}
