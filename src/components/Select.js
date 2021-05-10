@@ -5,6 +5,7 @@ const StyledSelect = styled.select`
   background: none;
   height: ${({ theme }) => theme.spacing.units(8)};
   border-radius: ${({ theme }) => theme.spacing.units(1)};
+  text-transform: capitalize;
 `;
 
 export default function Select({
