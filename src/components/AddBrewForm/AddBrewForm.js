@@ -5,8 +5,9 @@ import { format } from 'date-fns';
 
 import { Button } from '../Buttons';
 import LabelledInput from './LabelledInput';
-
-import { brewType } from '../../Types';
+import Time from '../Time';
+import TasteLabel from '../TasteLabel';
+import BrewTimer from '../BrewTimer/BrewTimer';
 
 import {
   Beans,
@@ -21,8 +22,8 @@ import {
   Technique,
   Taste,
 } from '../Icons';
-import Time from '../Time';
-import TasteLabel from '../TasteLabel';
+
+import { brewType } from '../../Types';
 
 const Column = styled.div`
   display: flex;
@@ -59,6 +60,8 @@ export default function AddBrewForm({
   const enableSaveButton = brewIsValid(brew);
 
   return (
+    <>
+    <BrewTimer />
     <Column>
       <LabelledInput
         icon={<Beans />}
@@ -159,6 +162,7 @@ export default function AddBrewForm({
         Save brew
       </Button>
     </Column>
+    </>
   );
 }
 
