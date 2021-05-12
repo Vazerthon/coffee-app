@@ -46,6 +46,7 @@ export default function AddBrewForm({
   beans,
   methods,
   techniques,
+  showTimer,
 }) {
   const [brew, setBrew] = useState(initialBrew);
   const patchBrew = (key) => (value) => setBrew({ ...brew, [key]: value });
@@ -63,7 +64,7 @@ export default function AddBrewForm({
 
   return (
     <>
-    <BrewTimer onStop={patchBrewTime} />
+    {showTimer && <BrewTimer onStop={patchBrewTime} /> }
     <Column>
       <LabelledInput
         icon={<Beans />}
@@ -175,4 +176,9 @@ AddBrewForm.propTypes = {
   beans: PropTypes.arrayOf(PropTypes.string).isRequired,
   methods: PropTypes.arrayOf(PropTypes.string).isRequired,
   techniques: PropTypes.arrayOf(PropTypes.string).isRequired,
+  showTimer: PropTypes.bool,
+};
+
+AddBrewForm.defaultProps = {
+  showTimer: false,
 };
