@@ -5,9 +5,17 @@ import useTick from '../../hooks/useTick';
 import { IconButton } from '../Buttons';
 import { Stop, Play } from '../Icons';
 import Time from '../Time';
+import { Span } from '../Typography';
 
-const ButtonRow = styled.div`
+const Row = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TimeLabel = styled(Span)`
+  font-size: ${({ theme }) => theme.spacing.units(16)};
+  margin-right: ${({ theme }) => theme.spacing.units(4)};
 `;
 
 const reducer = (state, { type, payload }) =>
@@ -62,10 +70,13 @@ export default function BrewTimer({ className }) {
 
   return (
     <div className={className}>
-      <Time>{secondsSinceStart}</Time>
-      <ButtonRow>
+      <Row>
+        <TimeLabel>
+          <Time>{secondsSinceStart}</Time>
+        </TimeLabel>
         {timerNotRunning && (
           <IconButton
+            large
             icon={Play}
             ariaLabel="Start timer"
             onClick={startTimer}
@@ -73,12 +84,13 @@ export default function BrewTimer({ className }) {
         )}
         {timerRunning && (
           <IconButton
+            large
             icon={Stop}
             ariaLabel="Stop timer"
             onClick={stopTimer}
           />
         )}
-      </ButtonRow>
+      </Row>
     </div>
   );
 }

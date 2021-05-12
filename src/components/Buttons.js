@@ -31,6 +31,17 @@ const RoundButtonBase = styled.button`
     min-height: ${theme.spacing.units(12)};
     max-height: ${theme.spacing.units(12)};
   `}
+
+  :hover {
+    color: ${({ theme }) => theme.colour.tertiary};
+    background-color: ${({ theme }) => theme.colour.primary};
+  }
+
+  :disabled {
+    background-color: ${({ theme }) => theme.colour.neutral.dark};
+    color: ${({ theme }) => theme.colour.neutral.light};
+    cursor: not-allowed;
+  }
 `;
 
 export function AddButton({ className, onClick }) {
@@ -55,9 +66,23 @@ AddButton.defaultProps = {
   className: undefined,
 };
 
-export function IconButton({ onClick, className, icon: Icon, ariaLabel }) {
+export function IconButton({
+  onClick,
+  className,
+  icon: Icon,
+  ariaLabel,
+  small,
+  large,
+  disabled,
+}) {
   return (
-    <RoundButtonBase small onClick={onClick} className={className}>
+    <RoundButtonBase
+      small={small}
+      large={large}
+      disabled={disabled}
+      onClick={onClick}
+      className={className}
+    >
       <Icon role="img" aria-label={ariaLabel} />
     </RoundButtonBase>
   );
@@ -68,10 +93,16 @@ IconButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   icon: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string.isRequired,
+  small: PropTypes.bool,
+  large: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 IconButton.defaultProps = {
   className: undefined,
+  small: true,
+  large: false,
+  disabled: false,
 };
 
 export const Button = styled.button`
@@ -85,5 +116,10 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colour.neutral.dark};
     color: ${({ theme }) => theme.colour.neutral.light};
     cursor: not-allowed;
+  }
+
+  :hover {
+    color: ${({ theme }) => theme.colour.tertiary};
+    background-color: ${({ theme }) => theme.colour.primary};
   }
 `;
