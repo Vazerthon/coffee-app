@@ -5,8 +5,9 @@ import { format } from 'date-fns';
 
 import { Button } from '../Buttons';
 import LabelledInput from './LabelledInput';
-
-import { brewType } from '../../Types';
+import Time from '../Time';
+import TasteLabel from '../TasteLabel';
+import BrewTimer from '../BrewTimer/BrewTimer';
 
 import {
   Beans,
@@ -21,8 +22,8 @@ import {
   Technique,
   Taste,
 } from '../Icons';
-import Time from '../Time';
-import TasteLabel from '../TasteLabel';
+
+import { brewType } from '../../Types';
 
 const Column = styled.div`
   display: flex;
@@ -45,6 +46,7 @@ export default function AddBrewForm({
   beans,
   methods,
   techniques,
+  showTimer,
 }) {
   const [brew, setBrew] = useState(initialBrew);
   const patchBrew = (key) => (value) => setBrew({ ...brew, [key]: value });
@@ -56,9 +58,13 @@ export default function AddBrewForm({
   const patchBrewDateTime = (dateString) =>
     patchBrew('dateTime')(new Date(dateString));
 
+  const patchBrewTime = patchBrew('brewTime');
+
   const enableSaveButton = brewIsValid(brew);
 
   return (
+    <>
+    {showTimer && <BrewTimer onStop={patchBrewTime} /> }
     <Column>
       <LabelledInput
         icon={<Beans />}
@@ -112,7 +118,7 @@ export default function AddBrewForm({
         min={0}
         max={1000}
         display={<Time>{Number.parseInt(brew.brewTime, 10)}</Time>}
-        onChange={patchBrew('brewTime')}
+        onChange={patchBrewTime}
       />
       <LabelledInput
         icon={<Technique />}
@@ -159,6 +165,7 @@ export default function AddBrewForm({
         Save brew
       </Button>
     </Column>
+    </>
   );
 }
 
@@ -169,4 +176,9 @@ AddBrewForm.propTypes = {
   beans: PropTypes.arrayOf(PropTypes.string).isRequired,
   methods: PropTypes.arrayOf(PropTypes.string).isRequired,
   techniques: PropTypes.arrayOf(PropTypes.string).isRequired,
+  showTimer: PropTypes.bool,
+};
+
+AddBrewForm.defaultProps = {
+  showTimer: false,
 };

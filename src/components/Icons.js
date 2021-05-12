@@ -9,6 +9,9 @@ import {
   GiHamburgerMenu,
   GiCog,
   GiTongue,
+  GiPlayButton,
+  GiPlainSquare,
+  
 } from 'react-icons/gi';
 
 import { IoMdDocument, IoMdClose, } from 'react-icons/io';
@@ -29,3 +32,5 @@ export const Close = IoMdClose;
 export const Technique = GiCog;
 export const Edit = GoPencil;
 export const Taste = GiTongue;
+export const Play = GiPlayButton;
+export const Stop = GiPlainSquare;

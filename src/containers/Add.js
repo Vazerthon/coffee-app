@@ -29,6 +29,7 @@ export default function Add() {
   return (
     <Wrapper title="Add a brew">
       <AddBrewForm
+        showTimer
         initialBrew={initialBrew}
         save={addBrew}
         onSave={navigateHome}

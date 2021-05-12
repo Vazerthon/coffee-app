@@ -14,11 +14,12 @@ import {
   Timer,
   Grinder,
   Notes,
+  Edit,
 } from '../Icons';
 
 import BoxList, { Box } from './BoxList';
 import DateLabel from './DateLabel';
-import { EditButton } from '../Buttons';
+import { IconButton } from '../Buttons';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
@@ -60,7 +61,7 @@ export default function BrewCard({
             <DateLabel>{dateTime}</DateLabel>
           </Span>
         </Title>
-        <EditButton onClick={editBrew} />
+        <IconButton onClick={editBrew} icon={Edit} ariaLabel="Edit" />
       </Row>
       <BoxList>
         <Box centre capitalise icon={<CoffeePot role="img" />} label="method">

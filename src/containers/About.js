@@ -1,5 +1,5 @@
 import Link from '../components/Link';
-import { H2, P } from '../components/Typography';
+import { H2, H3, P } from '../components/Typography';
 import Welcome from '../components/Welcome';
 import Wrapper from './Wrapper';
 
@@ -19,20 +19,17 @@ export default function About() {
         know that you&apos;re finding the app useful.
       </P>
       <hr />
-      <H2>Version</H2>
-      <P>
-        v1.0.0
-        <br />
-        Still in early development, expect a few rough edges.
-      </P>
-      <hr />
-      <H2>Features</H2>
+      <H2>Release Notes</H2>
+      <H3>v1.0.0</H3>
       <ul>
         <li>Record and edit brews</li>
         <li>Filter by bean and brew method</li>
       </ul>
-      <hr />
-      <H2>Coming soon...</H2>
+      <H3>v1.1.0</H3>
+      <ul>
+        <li>Brew timer on new brew screen</li>
+      </ul>
+      <H3>Coming soon...</H3>
       <ul>
         <li>Export and import data (for backup)</li>
         <li>Charts to show changes in brew data over time</li>
