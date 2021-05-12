@@ -10,13 +10,12 @@ import {
   GiCog,
   GiTongue,
   GiPlayButton,
-  GiPauseButton,
+  GiPlainSquare,
   
 } from 'react-icons/gi';
 
 import { IoMdDocument, IoMdClose, } from 'react-icons/io';
 import { GoCalendar, GoPencil, GoPlus } from 'react-icons/go';
-import { BiReset } from 'react-icons/bi';
 
 export const Beans = GiCoffeeBeans;
 export const CoffeePot = GiCoffeePot;
@@ -34,5 +33,4 @@ export const Technique = GiCog;
 export const Edit = GoPencil;
 export const Taste = GiTongue;
 export const Play = GiPlayButton;
-export const Pause = GiPauseButton;
-export const Reset = BiReset;
+export const Stop = GiPlainSquare;
