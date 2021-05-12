@@ -2,6 +2,7 @@ import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 import { useEffect, useReducer } from 'react';
 import useTick from '../../hooks/useTick';
+import useWakeLock from '../../hooks/useWakeLock';
 import { IconButton } from '../Buttons';
 import { Stop, Play } from '../Icons';
 import Time from '../Time';
@@ -33,6 +34,7 @@ const initialState = {
 
 export default function BrewTimer({ onStop }) {
   const frequency = 200;
+  const { keepAwake, release } = useWakeLock();
   const [{ secondsSinceStart, timerStatus, startTimestamp }, dispatch] = useReducer(
     reducer,
     initialState,
@@ -61,11 +63,13 @@ export default function BrewTimer({ onStop }) {
 
   const startTimer = () => {
     setStartTimestamp(Date.now());
+    keepAwake();
     setStatus('running');
   };
 
   const stopTimer = () => {
     onStop(secondsSinceStart);
+    release();
     setStatus('stopped');
   };
 
