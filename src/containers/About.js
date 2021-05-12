@@ -25,9 +25,10 @@ export default function About() {
         <li>Record and edit brews</li>
         <li>Filter by bean and brew method</li>
       </ul>
-      <H3>v1.1.0</H3>
+      <H3>v1.1.1</H3>
       <ul>
         <li>Brew timer on new brew screen</li>
+        <li>Device screen stays awake while timer running</li>
       </ul>
       <H3>Coming soon...</H3>
       <ul>
