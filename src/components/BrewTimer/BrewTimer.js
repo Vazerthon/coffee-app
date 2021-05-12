@@ -31,7 +31,7 @@ const initialState = {
   startTimestamp: undefined,
 };
 
-export default function BrewTimer({ className }) {
+export default function BrewTimer({ onStop }) {
   const frequency = 200;
   const [{ secondsSinceStart, timerStatus, startTimestamp }, dispatch] = useReducer(
     reducer,
@@ -65,11 +65,11 @@ export default function BrewTimer({ className }) {
   };
 
   const stopTimer = () => {
+    onStop(secondsSinceStart);
     setStatus('stopped');
   };
 
   return (
-    <div className={className}>
       <Row>
         <TimeLabel>
           <Time>{secondsSinceStart}</Time>
@@ -91,14 +91,13 @@ export default function BrewTimer({ className }) {
           />
         )}
       </Row>
-    </div>
   );
 }
 
 BrewTimer.propTypes = {
-  className: PropTypes.string,
+  onStop: PropTypes.func,
 };
 
 BrewTimer.defaultProps = {
-  className: undefined,
+  onStop: () => {},
 };

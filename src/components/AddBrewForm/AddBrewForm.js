@@ -57,11 +57,13 @@ export default function AddBrewForm({
   const patchBrewDateTime = (dateString) =>
     patchBrew('dateTime')(new Date(dateString));
 
+  const patchBrewTime = patchBrew('brewTime');
+
   const enableSaveButton = brewIsValid(brew);
 
   return (
     <>
-    <BrewTimer />
+    <BrewTimer onStop={patchBrewTime} />
     <Column>
       <LabelledInput
         icon={<Beans />}
@@ -115,7 +117,7 @@ export default function AddBrewForm({
         min={0}
         max={1000}
         display={<Time>{Number.parseInt(brew.brewTime, 10)}</Time>}
-        onChange={patchBrew('brewTime')}
+        onChange={patchBrewTime}
       />
       <LabelledInput
         icon={<Technique />}
