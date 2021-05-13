@@ -28,9 +28,9 @@ const Dropdown = styled(Select)`
   margin-bottom: ${({ theme }) => theme.spacing.units(2)};
 `;
 
-const makeToBrewCard = (editBrew) => (brew) => (
+const makeToBrewCard = (editBrew, starBrew) => (brew) => (
   // eslint-disable-next-line react/destructuring-assignment
-  <Card key={brew.id} brew={brew} editBrew={() => editBrew(brew.id)} />
+  <Card key={brew.id} brew={brew} editBrew={() => editBrew(brew.id)} onStarBrew={() => starBrew(brew)} />
 );
 
 export default function Brews({
@@ -43,8 +43,9 @@ export default function Brews({
   setMethodFilter,
   goToAddPage,
   goToEditPage,
+  onStarBrew
 }) {
-  const toBrewCard = makeToBrewCard(goToEditPage);
+  const toBrewCard = makeToBrewCard(goToEditPage, onStarBrew);
   const haveBrews = brews.length > 0;
 
   return (
@@ -82,6 +83,7 @@ Brews.propTypes = {
   setBeanFilter: PropTypes.func.isRequired,
   methodFilter: PropTypes.string.isRequired,
   setMethodFilter: PropTypes.func.isRequired,
+  onStarBrew: PropTypes.func.isRequired,
 };
 
 Brews.defaultProps = {
