@@ -8,12 +8,20 @@ import Welcome from '../Welcome';
 import { Button } from '../Buttons';
 
 import { brewType } from '../../Types';
+import OpenFile from '../OpenFile';
 
 const Row = styled.div`
+  display: flex;
   margin: ${({ theme }) => theme.spacing.units(2)} 0;
+  ${Button} {
+    flex-grow: 1;
+    margin: 0 ${({ theme }) => theme.spacing.units(2)};
+  }
 `;
 
-export default function About({ brews }) {
+export default function About({ brews, onImportBrews }) {
+  const processFile = (file) => onImportBrews(JSON.parse(file).brews);
+
   return (
     <>
       <Welcome />
@@ -37,6 +45,14 @@ export default function About({ brews }) {
           render={(onClick) => (
             <Button type="button" onClick={onClick}>
               export all data
+            </Button>
+          )}
+        />
+        <OpenFile
+          process={processFile}
+          render={(onClick) => (
+            <Button type="button" onClick={onClick}>
+              import from backup
             </Button>
           )}
         />
@@ -64,4 +80,5 @@ export default function About({ brews }) {
 
 About.propTypes = {
   brews: PropTypes.arrayOf(brewType).isRequired,
+  onImportBrews: PropTypes.func.isRequired,
 };
