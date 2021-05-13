@@ -16,6 +16,7 @@ import {
   Notes,
   Edit,
   Taste,
+  Star,
 } from '../Icons';
 
 import BoxList, { Box } from './BoxList';
@@ -27,6 +28,11 @@ const Container = styled.div`
   padding: ${({ theme }) => theme.spacing.units(2)};
   border-radius: ${({ theme }) => theme.spacing.units(1)};
   box-shadow: 0 0 ${({ theme }) => theme.spacing.units(1)};
+  background-color: ${({ theme }) => theme.colour.secondary};
+  ${({ invert, theme }) => invert && `
+    background-color: ${theme.colour.primary};
+    color: ${theme.colour.secondary};
+  `};
 `;
 
 const Row = styled.div`
@@ -49,13 +55,16 @@ export default function BrewCard({
     notes,
     dateTime,
     taste,
+    starred,
   },
   className,
   editBrew,
+  onStarBrew,
 }) {
   return (
-    <Container className={className}>
+    <Container className={className} invert={starred}>
       <Row>
+        <IconButton onClick={onStarBrew} icon={Star} ariaLabel="Star" />
         <Title centre capitalise>
           {bean}
           <br />
@@ -106,6 +115,7 @@ BrewCard.propTypes = {
   brew: brewType.isRequired,
   className: PropTypes.string,
   editBrew: PropTypes.func.isRequired,
+  onStarBrew: PropTypes.func.isRequired,
 };
 
 BrewCard.defaultProps = {

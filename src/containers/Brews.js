@@ -18,12 +18,14 @@ export default function Brews() {
     setBeanFilter,
     methodFilter,
     setMethodFilter,
+    updateBrew,
   } = useContext(BrewsContext);
   const { routes } = useContext(SettingsContext);
   const history = useHistory();
 
   const goToAddPage = () => history.push(routes.add);
   const goToEditPage = (id) => history.push(routes.makeEditPath(id));
+  const starBrew = (brew) => updateBrew({ ...brew, starred: !brew.starred });
   const haveBrews = allBrews.length > 0;
 
   return (
@@ -40,6 +42,7 @@ export default function Brews() {
           setMethodFilter={setMethodFilter}
           goToAddPage={goToAddPage}
           goToEditPage={goToEditPage}
+          onStarBrew={starBrew}
         />
       )}
     </Wrapper>
