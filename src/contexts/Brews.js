@@ -97,6 +97,7 @@ export const BrewsProvider = ({ children }) => {
   const addBrew = (brew) => setStoredBrews([...allBrews, brew]);
   const updateBrew = (brew) =>
     setStoredBrews([...allBrews.filter((b) => b.id !== brew.id), brew]);
+  const overwriteAllBrews = setStoredBrews;
 
   const beans = getUniqueListOfBrewProp('bean', allBrews);
   const methods = getUniqueListOfBrewProp('method', allBrews);
@@ -116,6 +117,7 @@ export const BrewsProvider = ({ children }) => {
     setBeanFilter,
     methodFilter,
     setMethodFilter,
+    overwriteAllBrews,
   };
 
   return (
