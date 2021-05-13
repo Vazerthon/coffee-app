@@ -29,6 +29,11 @@ export default function About() {
       <ul>
         <li>Brew timer on new brew screen</li>
         <li>Device screen stays awake while timer running</li>
+        <li>Brew time applied to new brew when timer is stopped</li>
+      </ul>
+      <H3>v1.2.0</H3>
+      <ul>
+        <li>Brews can be starred</li>
       </ul>
       <H3>Coming soon...</H3>
       <ul>
