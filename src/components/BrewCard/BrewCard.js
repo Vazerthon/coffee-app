@@ -41,6 +41,7 @@ const Row = styled.div`
 
 const Title = styled(H2)`
   width: 100%;
+  margin: 0 ${({ theme }) => theme.spacing.units(2)};
 `;
 
 export default function BrewCard({
