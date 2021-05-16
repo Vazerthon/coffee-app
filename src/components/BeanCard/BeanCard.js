@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { H2 } from '../Typography';
 import { Beans } from '../Icons';
 import { brewType } from '../../Types';
+import NumberFormat from '../NumberFormat';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
@@ -56,7 +57,7 @@ export default function BeanCard({
       </Title>
       <List>
         <li>Brews: {brewCount}</li>
-        <li>Weight: {totalWeight}g</li>
+        <li>Weight: <NumberFormat>{totalWeight}</NumberFormat>g</li>
       </List>
       <Textarea
         value={note}
