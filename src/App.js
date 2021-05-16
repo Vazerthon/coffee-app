@@ -4,15 +4,18 @@ import Theme from './contexts/Theme';
 import Routes from './Routes';
 import { SettingsProvider } from './contexts/Settings';
 import { BrewsProvider } from './contexts/Brews';
+import { BeanNotesProvider } from './contexts/BeanNotes';
 
 function App() {
   return (
     <Theme>
       <SettingsProvider>
         <BrewsProvider>
-          <BrowserRouter>
-            <Routes />
-          </BrowserRouter>
+          <BeanNotesProvider>
+            <BrowserRouter>
+              <Routes />
+            </BrowserRouter>
+          </BeanNotesProvider>
         </BrewsProvider>
       </SettingsProvider>
     </Theme>
