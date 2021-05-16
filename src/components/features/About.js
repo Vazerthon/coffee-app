@@ -76,6 +76,7 @@ export default function About({ backupData, onImportBackupFile }) {
       <H3>v1.3.0</H3>
       <ul>
         <li>Adds bean notes functionality. Take notes related to each bean you brew with</li>
+        <li>Adds stats per bean: number of brews and total weight of coffee used</li>
         <li>Include bean notes in backup file</li>
       </ul>
       <H3>Coming soon...</H3>
