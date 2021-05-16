@@ -18,6 +18,7 @@ const List = styled.ul`
   width: 100%;
   background-color: ${({ theme }) => theme.colour.secondary};
   position: absolute;
+  z-index: 1;
   display: ${({ open }) => (open ? 'flex' : 'none')};
   ${({ open }) => open || 'transform: translateX(100%);'}
   ${({ open }) => open && 'box-shadow: 0 6px 8px -8px'};
