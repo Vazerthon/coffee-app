@@ -7,7 +7,7 @@ import { H2, H3, P } from '../Typography';
 import Welcome from '../Welcome';
 import { Button } from '../Buttons';
 
-import { brewType } from '../../Types';
+import { backupDataType } from '../../Types';
 import OpenFile from '../OpenFile';
 
 const Row = styled.div`
@@ -19,9 +19,7 @@ const Row = styled.div`
   }
 `;
 
-export default function About({ brews, onImportBrews }) {
-  const processFile = (file) => onImportBrews(JSON.parse(file).brews);
-
+export default function About({ backupData, onImportBackupFile }) {
   return (
     <>
       <Welcome />
@@ -40,7 +38,7 @@ export default function About({ brews, onImportBrews }) {
       <H2>Import/Export</H2>
       <Row>
         <DownloadLink
-          data={{ brews }}
+          data={backupData}
           filename={`coffee-chronicles-backup-${Date.now()}.json`}
           render={(onClick) => (
             <Button type="button" onClick={onClick}>
@@ -49,7 +47,7 @@ export default function About({ brews, onImportBrews }) {
           )}
         />
         <OpenFile
-          process={processFile}
+          process={onImportBackupFile}
           render={(onClick) => (
             <Button type="button" onClick={onClick}>
               import from backup
@@ -75,6 +73,11 @@ export default function About({ brews, onImportBrews }) {
         <li>Brews can be starred</li>
         <li>Export and import data (for backup)</li>
       </ul>
+      <H3>v1.3.0</H3>
+      <ul>
+        <li>Adds bean notes functionality. Take notes related to each bean you brew with</li>
+        <li>Include bean notes in backup file</li>
+      </ul>
       <H3>Coming soon...</H3>
       <ul>
         <li>Charts to show changes in brew data over time</li>
@@ -84,6 +87,6 @@ export default function About({ brews, onImportBrews }) {
 }
 
 About.propTypes = {
-  brews: PropTypes.arrayOf(brewType).isRequired,
-  onImportBrews: PropTypes.func.isRequired,
+  backupData: backupDataType.isRequired,
+  onImportBackupFile: PropTypes.func.isRequired,
 };

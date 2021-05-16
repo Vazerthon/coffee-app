@@ -56,6 +56,7 @@ const parseStoredBrew = ({
   waterWeight,
   waterTemperature,
   brewTime,
+  taste,
   ...rest
 }) => ({
   dateTime: new Date(dateTime),
@@ -64,6 +65,7 @@ const parseStoredBrew = ({
   waterWeight: Number.parseInt(waterWeight, 10),
   waterTemperature: Number.parseInt(waterTemperature, 10),
   brewTime: Number.parseInt(brewTime, 10),
+  taste: Number.parseInt(taste, 10),
   ...rest,
 });
 

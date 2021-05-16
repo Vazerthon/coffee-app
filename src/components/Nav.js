@@ -18,6 +18,7 @@ const List = styled.ul`
   width: 100%;
   background-color: ${({ theme }) => theme.colour.secondary};
   position: absolute;
+  z-index: 1;
   display: ${({ open }) => (open ? 'flex' : 'none')};
   ${({ open }) => open || 'transform: translateX(100%);'}
   ${({ open }) => open && 'box-shadow: 0 6px 8px -8px'};
@@ -112,6 +113,12 @@ export default function Nav({ routes, currentPath, title }) {
             label="Add Brew"
             onClick={closeDrawer}
             active={currentPath === routes.add}
+          />
+          <NavListItem
+            href={routes.beans}
+            label="Beans"
+            onClick={closeDrawer}
+            active={currentPath === routes.beans}
           />
           <NavListItem
             href={routes.about}

@@ -9,6 +9,7 @@ const settings = {
     about: '/about',
     add: '/add',
     edit: '/edit/:id',
+    beans: '/beans',
     makeEditPath: (id) => `/edit/${id}`,
   },
 };
