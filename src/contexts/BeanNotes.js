@@ -9,9 +9,12 @@ export const BeanNotesProvider = ({ children }) => {
 
   const setBeanNote = (bean, note) => setStoredBeanNotes({ ...storedBeanNotes, [bean]: note });
 
+  const overwriteAllNotes = (notes) => setStoredBeanNotes(notes);
+
   const value = {
     beanNotes: storedBeanNotes,
     setBeanNote,
+    overwriteAllNotes,
   };
 
   return (

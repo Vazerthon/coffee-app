@@ -3,18 +3,24 @@ import { useHistory } from 'react-router';
 
 import { SettingsContext } from '../contexts/Settings';
 import { BrewsContext } from '../contexts/Brews';
+import { BeanNotesContext } from '../contexts/BeanNotes';
 
 const useImportExport = () => {
   const history = useHistory();
   const { routes } = useContext(SettingsContext);
   const { allBrews, overwriteAllBrews } = useContext(BrewsContext);
+  const { beanNotes, overwriteAllNotes } = useContext(BeanNotesContext);
 
   const importData = (rawFileData) => {
     try {
-      const { brews } = JSON.parse(rawFileData);
+      const json = JSON.parse(rawFileData);
 
-      if (brews) {
-        overwriteAllBrews(brews);
+      if (json.brews) {
+        overwriteAllBrews(json.brews);
+      }
+
+      if (json.beanNotes) {
+        overwriteAllNotes(json.beanNotes);
       }
 
       history.push(routes.home);
@@ -25,6 +31,7 @@ const useImportExport = () => {
   };
   const generateExportData = () => ({
     brews: allBrews,
+    beanNotes,
   });
 
   return {
