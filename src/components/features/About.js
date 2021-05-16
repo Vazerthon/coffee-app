@@ -73,6 +73,11 @@ export default function About({ backupData, onImportBackupFile }) {
         <li>Brews can be starred</li>
         <li>Export and import data (for backup)</li>
       </ul>
+      <H3>v1.3.0</H3>
+      <ul>
+        <li>Adds bean notes functionality. Take notes related to each bean you brew with</li>
+        <li>Include bean notes in backup file</li>
+      </ul>
       <H3>Coming soon...</H3>
       <ul>
         <li>Charts to show changes in brew data over time</li>
