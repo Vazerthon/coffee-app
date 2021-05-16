@@ -19,3 +19,7 @@ export const brewType = PropTypes.shape({
   technique: PropTypes.string,
   taste: PropTypes.number,
 });
+
+export const backupDataType = PropTypes.shape({
+  brews: PropTypes.arrayOf(brewType),
+});
