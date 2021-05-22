@@ -40,11 +40,10 @@ export default function BeanCard({
   className,
   bean,
   note,
-  allBrews,
+  brewsOfThisBean,
   onChange,
 }) {
   const handleChange = ({ target }) => onChange(bean, target.value);
-  const brewsOfThisBean = allBrews.filter((brew) => brew.bean === bean);
   const brewCount = brewsOfThisBean.length;
   const totalWeight = brewsOfThisBean
     .map(({ groundsWeight }) => groundsWeight)
@@ -73,7 +72,7 @@ BeanCard.propTypes = {
   onChange: PropTypes.func.isRequired,
   note: PropTypes.string,
   className: PropTypes.string,
-  allBrews: PropTypes.arrayOf(brewType).isRequired,
+  brewsOfThisBean: PropTypes.arrayOf(brewType).isRequired,
 };
 
 BeanCard.defaultProps = {

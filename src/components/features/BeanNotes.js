@@ -1,6 +1,5 @@
 import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
-import { brewType } from '../../Types';
 import BeanCard from '../BeanCard/BeanCard';
 import { H2, P } from '../Typography';
 
@@ -9,7 +8,7 @@ const Card = styled(BeanCard)`
   margin-bottom: ${({ theme }) => theme.spacing.units(4)};
 `;
 
-export default function BeanNotes({ beans, notes, setNote, allBrews }) {
+export default function BeanNotes({ beans, notes, setNote, getBrewsOfBean }) {
   const haveBeans = beans.length > 0;
 
   return (
@@ -21,7 +20,7 @@ export default function BeanNotes({ beans, notes, setNote, allBrews }) {
             bean={bean}
             note={notes[bean]}
             onChange={setNote}
-            allBrews={allBrews}
+            brewsOfThisBean={getBrewsOfBean(bean)}
           />
         ))}
       {!haveBeans && (
@@ -42,5 +41,5 @@ BeanNotes.propTypes = {
   beans: PropTypes.arrayOf(PropTypes.string).isRequired,
   notes: PropTypes.objectOf(PropTypes.string).isRequired,
   setNote: PropTypes.func.isRequired,
-  allBrews: PropTypes.arrayOf(brewType).isRequired,
+  getBrewsOfBean: PropTypes.func.isRequired,
 };
