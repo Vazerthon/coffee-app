@@ -7,7 +7,7 @@ import { BrewsContext } from '../contexts/Brews';
 import { BeanNotesContext } from '../contexts/BeanNotes';
 
 export default function Beans() {
-  const { beans, allBrews } = useContext(BrewsContext);
+  const { beans, getBrewsOfBean } = useContext(BrewsContext);
   const { beanNotes, setBeanNote } = useContext(BeanNotesContext);
 
   return (
@@ -16,7 +16,7 @@ export default function Beans() {
         beans={beans}
         notes={beanNotes}
         setNote={setBeanNote}
-        allBrews={allBrews}
+        getBrewsOfBean={getBrewsOfBean}
       />
     </Wrapper>
   );
