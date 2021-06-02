@@ -11,7 +11,6 @@ export default function Add() {
   const {
     beans,
     methods,
-    techniques,
     makeBrew,
     defaultBrew,
     addBrew,
@@ -35,7 +34,6 @@ export default function Add() {
         onSave={navigateHome}
         beans={beans}
         methods={methods}
-        techniques={techniques}
       />
     </Wrapper>
   );
