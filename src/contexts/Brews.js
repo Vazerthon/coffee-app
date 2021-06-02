@@ -105,14 +105,12 @@ export const BrewsProvider = ({ children }) => {
 
   const beans = getUniqueListOfBrewProp('bean', allBrews);
   const methods = getUniqueListOfBrewProp('method', allBrews);
-  const techniques = getUniqueListOfBrewProp('technique', allBrews);
 
   const value = {
     allBrews,
     filteredBrews,
     beans,
     methods,
-    techniques,
     addBrew,
     updateBrew,
     defaultBrew,

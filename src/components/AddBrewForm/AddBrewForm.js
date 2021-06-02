@@ -46,7 +46,6 @@ export default function AddBrewForm({
   onSave,
   beans,
   methods,
-  techniques,
   showTimer,
 }) {
   const [brew, setBrew] = useState(initialBrew);
@@ -135,7 +134,6 @@ export default function AddBrewForm({
           label="technique"
           value={brew.technique}
           onChange={patchBrew('technique')}
-          list={techniques}
         />
         <LabelledInput
           Component={Input}
@@ -187,7 +185,6 @@ AddBrewForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   beans: PropTypes.arrayOf(PropTypes.string).isRequired,
   methods: PropTypes.arrayOf(PropTypes.string).isRequired,
-  techniques: PropTypes.arrayOf(PropTypes.string).isRequired,
   showTimer: PropTypes.bool,
 };
 
