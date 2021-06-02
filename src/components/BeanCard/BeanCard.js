@@ -5,6 +5,7 @@ import { H2 } from '../Typography';
 import { Beans } from '../Icons';
 import { brewType } from '../../Types';
 import NumberFormat from '../NumberFormat';
+import { Textarea } from '../FormControls';
 
 const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colour.tertiary};
@@ -27,13 +28,6 @@ const Title = styled(H2)`
 
 const List = styled.ul`
   margin: ${({ theme }) => theme.spacing.units(2)} 0;
-`;
-
-const Textarea = styled.textarea`
-  width: calc(100% - ${({ theme }) => theme.spacing.units(5)});
-  padding: ${({ theme }) => theme.spacing.units(2)};
-  min-height: ${({ theme }) => theme.spacing.units(20)};
-  color: ${({ theme }) => theme.colour.primary};
 `;
 
 export default function BeanCard({

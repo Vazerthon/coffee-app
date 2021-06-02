@@ -11,14 +11,6 @@ const Label = styled.label`
   margin-bottom: ${({ theme }) => theme.spacing.units(3)};
 `;
 
-const Input = styled.input`
-  font-size: ${({ theme }) => theme.spacing.units(4)};
-  font-family: ${({ theme }) => theme.typography.fontFamilyBody};
-  height: ${({ theme }) => theme.spacing.units(6)};
-  color: ${({ theme }) => theme.colour.primary};
-  width: 100%;
-`;
-
 const IconLabel = styled(Span)`
   display: flex;
 `;
@@ -43,6 +35,7 @@ export default function LabelledInput({
   min,
   max,
   display,
+  Component,
 }) {
   const handleChange = (e) => onChange(e.currentTarget.value);
   return (
@@ -52,7 +45,7 @@ export default function LabelledInput({
         <IconWrapper>{icon}</IconWrapper>
       </IconLabel>
       <Row>
-        <Input
+        <Component
           type={type}
           value={value}
           onChange={handleChange}
@@ -81,6 +74,8 @@ LabelledInput.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   display: PropTypes.node,
+  // eslint-disable-next-line react/forbid-prop-types
+  Component: PropTypes.object.isRequired,
 };
 
 LabelledInput.defaultProps = {

@@ -8,6 +8,7 @@ import LabelledInput from './LabelledInput';
 import Time from '../Time';
 import TasteLabel from '../TasteLabel';
 import BrewTimer from '../BrewTimer/BrewTimer';
+import { Input, Textarea } from '../FormControls';
 
 import {
   Beans,
@@ -64,107 +65,118 @@ export default function AddBrewForm({
 
   return (
     <>
-    {showTimer && <BrewTimer onStop={patchBrewTime} /> }
-    <Column>
-      <LabelledInput
-        icon={<Beans />}
-        type="text"
-        label="bean"
-        value={brew.bean}
-        onChange={patchBrew('bean')}
-        list={beans}
-      />
-      <LabelledInput
-        icon={<CoffeePot />}
-        type="text"
-        label="method"
-        value={brew.method}
-        onChange={patchBrew('method')}
-        list={methods}
-      />
-      <LabelledInput
-        icon={<Scales />}
-        type="number"
-        label="grounds weight"
-        value={brew.groundsWeight}
-        onChange={patchBrew('groundsWeight')}
-      />
-      <LabelledInput
-        icon={<Grinder />}
-        type="number"
-        label="grind size"
-        value={brew.grindSize}
-        onChange={patchBrew('grindSize')}
-      />
-      <LabelledInput
-        icon={<WaterDrop />}
-        type="number"
-        label="water weight"
-        value={brew.waterWeight}
-        onChange={patchBrew('waterWeight')}
-      />
-      <LabelledInput
-        icon={<Thermometer />}
-        type="number"
-        label="water temperature"
-        value={brew.waterTemperature}
-        onChange={patchBrew('waterTemperature')}
-      />
-      <LabelledInput
-        icon={<Timer />}
-        type="range"
-        label="brew time"
-        value={brew.brewTime}
-        min={0}
-        max={1000}
-        display={<Time>{Number.parseInt(brew.brewTime, 10)}</Time>}
-        onChange={patchBrewTime}
-      />
-      <LabelledInput
-        icon={<Technique />}
-        type="text"
-        label="technique"
-        value={brew.technique}
-        onChange={patchBrew('technique')}
-        list={techniques}
-      />
-      <LabelledInput
-        icon={<Taste />}
-        type="range"
-        label="taste"
-        value={brew.taste}
-        onChange={patchBrew('taste')}
-        min={-10}
-        max={10}
-        display={
-          <FixedWidthTasteLabel>
-            {Number.parseInt(brew.taste, 10)}
-          </FixedWidthTasteLabel>
-        }
-      />
-      <LabelledInput
-        icon={<Notes />}
-        type="text"
-        label="notes"
-        value={brew.notes}
-        onChange={patchBrew('notes')}
-      />
-      <LabelledInput
-        icon={<Calendar />}
-        type="datetime-local"
-        label="date"
-        value={formatDate(brew.dateTime)}
-        onChange={patchBrewDateTime}
-      />
+      {showTimer && <BrewTimer onStop={patchBrewTime} />}
+      <Column>
+        <LabelledInput
+          Component={Input}
+          icon={<Beans />}
+          type="text"
+          label="bean"
+          value={brew.bean}
+          onChange={patchBrew('bean')}
+          list={beans}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<CoffeePot />}
+          type="text"
+          label="method"
+          value={brew.method}
+          onChange={patchBrew('method')}
+          list={methods}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<Scales />}
+          type="number"
+          label="grounds weight"
+          value={brew.groundsWeight}
+          onChange={patchBrew('groundsWeight')}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<Grinder />}
+          type="number"
+          label="grind size"
+          value={brew.grindSize}
+          onChange={patchBrew('grindSize')}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<WaterDrop />}
+          type="number"
+          label="water weight"
+          value={brew.waterWeight}
+          onChange={patchBrew('waterWeight')}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<Thermometer />}
+          type="number"
+          label="water temperature"
+          value={brew.waterTemperature}
+          onChange={patchBrew('waterTemperature')}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<Timer />}
+          type="range"
+          label="brew time"
+          value={brew.brewTime}
+          min={0}
+          max={1000}
+          display={<Time>{Number.parseInt(brew.brewTime, 10)}</Time>}
+          onChange={patchBrewTime}
+        />
+        <LabelledInput
+          Component={Textarea}
+          icon={<Technique />}
+          type="text"
+          label="technique"
+          value={brew.technique}
+          onChange={patchBrew('technique')}
+          list={techniques}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<Taste />}
+          type="range"
+          label="taste"
+          value={brew.taste}
+          onChange={patchBrew('taste')}
+          min={-10}
+          max={10}
+          display={
+            <FixedWidthTasteLabel>
+              {Number.parseInt(brew.taste, 10)}
+            </FixedWidthTasteLabel>
+          }
+        />
+        <LabelledInput
+          Component={Textarea}
+          icon={<Notes />}
+          type="text"
+          label="notes"
+          value={brew.notes}
+          onChange={patchBrew('notes')}
+        />
+        <LabelledInput
+          Component={Input}
+          icon={<Calendar />}
+          type="datetime-local"
+          label="date"
+          value={formatDate(brew.dateTime)}
+          onChange={patchBrewDateTime}
+        />
 
-      <Button
-        onClick={saveBrew}
-        disabled={!enableSaveButton}
-        aria-label="Save brew"
-      >
-        Save brew
-      </Button>
-    </Column>
+        <Button
+          onClick={saveBrew}
+          disabled={!enableSaveButton}
+          aria-label="Save brew"
+        >
+          Save brew
+        </Button>
+      </Column>
     </>
   );
 }
