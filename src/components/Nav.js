@@ -109,7 +109,7 @@ export default function Nav({ routes, currentPath, title }) {
             active={currentPath === routes.home}
           />
           <NavListItem
-            href={routes.add}
+            href={routes.makeAddPath()}
             label="Add Brew"
             onClick={closeDrawer}
             active={currentPath === routes.add}

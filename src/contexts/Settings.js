@@ -7,10 +7,12 @@ const settings = {
   routes: {
     home: '/',
     about: '/about',
-    add: '/add',
+    add: '/add/:id?',
     edit: '/edit/:id',
     beans: '/beans',
     makeEditPath: (id) => `/edit/${id}`,
+    makeAddPath: () => '/add',
+    makeCopyPath: (id) => `/add/${id}`,
   },
 };
 
