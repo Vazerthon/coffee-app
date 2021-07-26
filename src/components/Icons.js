@@ -11,10 +11,9 @@ import {
   GiTongue,
   GiPlayButton,
   GiPlainSquare,
-  
 } from 'react-icons/gi';
 
-import { IoMdDocument, IoMdClose, } from 'react-icons/io';
+import { IoMdDocument, IoMdClose, IoMdCopy } from 'react-icons/io';
 import { GoCalendar, GoPencil, GoPlus, GoStar } from 'react-icons/go';
 
 export const Beans = GiCoffeeBeans;
@@ -35,3 +34,4 @@ export const Taste = GiTongue;
 export const Play = GiPlayButton;
 export const Stop = GiPlainSquare;
 export const Star = GoStar;
+export const Clone = IoMdCopy;

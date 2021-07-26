@@ -28,9 +28,14 @@ const Dropdown = styled(Select)`
   margin-bottom: ${({ theme }) => theme.spacing.units(2)};
 `;
 
-const makeToBrewCard = (editBrew, starBrew) => (brew) => (
-  // eslint-disable-next-line react/destructuring-assignment
-  <Card key={brew.id} brew={brew} editBrew={() => editBrew(brew.id)} onStarBrew={() => starBrew(brew)} />
+const makeToBrewCard = (editBrew, starBrew, copyBrew) => (brew) => (
+  <Card
+    key={brew.id} // eslint-disable-line react/destructuring-assignment
+    brew={brew}
+    editBrew={() => editBrew(brew.id)}
+    copyBrew={() => copyBrew(brew.id)}
+    onStarBrew={() => starBrew(brew)}
+  />
 );
 
 export default function Brews({
@@ -43,9 +48,9 @@ export default function Brews({
   setMethodFilter,
   goToAddPage,
   goToEditPage,
-  onStarBrew
+  onStarBrew,
 }) {
-  const toBrewCard = makeToBrewCard(goToEditPage, onStarBrew);
+  const toBrewCard = makeToBrewCard(goToEditPage, onStarBrew, goToAddPage);
   const haveBrews = brews.length > 0;
 
   return (
@@ -67,8 +72,13 @@ export default function Brews({
         />
       </Column>
       {haveBrews && brews.map(toBrewCard)}
-      {!haveBrews && <P>Looks like you&apos;ve never made a {methodFilter} brew with {beanFilter} beans</P>}
-      <AddBrew role="button" onClick={goToAddPage} />
+      {!haveBrews && (
+        <P>
+          Looks like you&apos;ve never made a {methodFilter} brew with{' '}
+          {beanFilter} beans
+        </P>
+      )}
+      <AddBrew role="button" onClick={() => goToAddPage()} />
     </>
   );
 }

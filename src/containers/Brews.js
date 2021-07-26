@@ -23,8 +23,11 @@ export default function Brews() {
   const { routes } = useContext(SettingsContext);
   const history = useHistory();
 
-  const goToAddPage = () => history.push(routes.add);
-  const goToEditPage = (id) => history.push(routes.makeEditPath(id));
+  const goToAddPage = (id) =>
+    history.push(id ? routes.makeCopyPath(id) : routes.makeAddPath());
+
+  const goToEditPage = (id, copy) =>
+    history.push(routes.makeEditPath(id, copy));
   const starBrew = (brew) => updateBrew({ ...brew, starred: !brew.starred });
   const haveBrews = allBrews.length > 0;
 

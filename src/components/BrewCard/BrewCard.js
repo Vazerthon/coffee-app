@@ -17,6 +17,7 @@ import {
   Edit,
   Taste,
   Star,
+  Clone,
 } from '../Icons';
 
 import BoxList, { Box } from './BoxList';
@@ -44,6 +45,10 @@ const Title = styled(H2)`
   margin: 0 ${({ theme }) => theme.spacing.units(2)};
 `;
 
+const MarginButton = styled(IconButton)`
+  margin: 0 ${({ theme }) => theme.spacing.units(1)};
+`;
+
 export default function BrewCard({
   brew: {
     bean,
@@ -61,11 +66,12 @@ export default function BrewCard({
   className,
   editBrew,
   onStarBrew,
+  copyBrew,
 }) {
   return (
     <Container className={className} invert={starred}>
       <Row>
-        <IconButton onClick={onStarBrew} icon={Star} ariaLabel="Star" />
+        <MarginButton onClick={onStarBrew} icon={Star} ariaLabel="Star" />
         <Title centre capitalise>
           {bean}
           <br />
@@ -73,7 +79,8 @@ export default function BrewCard({
             <DateLabel>{dateTime}</DateLabel>
           </Span>
         </Title>
-        <IconButton onClick={editBrew} icon={Edit} ariaLabel="Edit" />
+        <MarginButton onClick={editBrew} icon={Edit} ariaLabel="Edit" />
+        <MarginButton onClick={copyBrew} icon={Clone} ariaLabel="Clone" />
       </Row>
       <BoxList>
         <Box centre capitalise icon={<CoffeePot role="img" />} label="method">
@@ -117,6 +124,7 @@ BrewCard.propTypes = {
   className: PropTypes.string,
   editBrew: PropTypes.func.isRequired,
   onStarBrew: PropTypes.func.isRequired,
+  copyBrew: PropTypes.func.isRequired,
 };
 
 BrewCard.defaultProps = {

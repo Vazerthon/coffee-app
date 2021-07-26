@@ -18,7 +18,7 @@ function Routes() {
         <Brews />
       </Route>
       <Route path={routes.add} exact>
-        <Add />
+      {({ match }) => <Add brewId={match.params.id} />}
       </Route>
       <Route path={routes.edit} exact>
         {({ match }) => <Edit brewId={match.params.id} />}
