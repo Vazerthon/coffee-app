@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import Theme from './contexts/Theme';
-import Routes from './Routes';
+import Routes from './AppRoutes';
 import { SettingsProvider } from './contexts/Settings';
 import { BrewsProvider } from './contexts/Brews';
 import { BeanNotesProvider } from './contexts/BeanNotes';

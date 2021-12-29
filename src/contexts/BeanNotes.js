@@ -1,26 +1,28 @@
-import { createContext } from 'react';
+import { createContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import usePersistedState from '../hooks/usePersistedState';
 
 export const BeanNotesContext = createContext();
 
-export const BeanNotesProvider = ({ children }) => {
+export function BeanNotesProvider({ children }) {
   const [storedBeanNotes, setStoredBeanNotes] = usePersistedState('beanNotes', {});
 
-  const setBeanNote = (bean, note) => setStoredBeanNotes({ ...storedBeanNotes, [bean]: note });
+  const value = useMemo(() => {
+    const setBeanNote = (bean, note) => setStoredBeanNotes({ ...storedBeanNotes, [bean]: note });
 
-  const overwriteAllNotes = (notes) => setStoredBeanNotes(notes);
+    const overwriteAllNotes = (notes) => setStoredBeanNotes(notes);
 
-  const value = {
-    beanNotes: storedBeanNotes,
-    setBeanNote,
-    overwriteAllNotes,
-  };
+    return {
+      beanNotes: storedBeanNotes,
+      setBeanNote,
+      overwriteAllNotes,
+    }
+  }, [setStoredBeanNotes, storedBeanNotes]);
 
   return (
     <BeanNotesContext.Provider value={value}>{children}</BeanNotesContext.Provider>
   );
-};
+}
 
 BeanNotesProvider.propTypes = {
   children: PropTypes.node.isRequired,

@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import usePersistedState from '../hooks/usePersistedState';
@@ -84,7 +84,7 @@ const makeFilterByBean = (beanFilter) => ({ bean }) =>
 const makeFilterByMethod = (methodFilter) => ({ method }) =>
   areEqual(methodFilter, method);
 
-export const BrewsProvider = ({ children }) => {
+export function BrewsProvider({ children }) {
   const [storedBrews, setStoredBrews] = usePersistedState('brews', []);
   const [beanFilter, setBeanFilter] = useState('');
   const [methodFilter, setMethodFilter] = useState('');
@@ -96,37 +96,40 @@ export const BrewsProvider = ({ children }) => {
 
   const allBrews = storedBrews.map(parseStoredBrew).sort(newestFirst);
   const filteredBrews = allBrews.filter(filterByBean).filter(filterByMethod);
-  const addBrew = (brew) => setStoredBrews([...allBrews, brew]);
-  const updateBrew = (brew) =>
-    setStoredBrews([...allBrews.filter((b) => b.id !== brew.id), brew]);
-  const overwriteAllBrews = setStoredBrews;
-
-  const getBrewsOfBean = (bean) => allBrews.filter(makeFilterByBean(bean));
 
   const beans = getUniqueListOfBrewProp('bean', allBrews);
   const methods = getUniqueListOfBrewProp('method', allBrews);
 
-  const value = {
-    allBrews,
-    filteredBrews,
-    beans,
-    methods,
-    addBrew,
-    updateBrew,
-    defaultBrew,
-    makeBrew,
-    beanFilter,
-    setBeanFilter,
-    methodFilter,
-    setMethodFilter,
-    overwriteAllBrews,
-    getBrewsOfBean,
-  };
+  const value = useMemo(() => {
+    const addBrew = (brew) => setStoredBrews([...allBrews, brew]);
+    const updateBrew = (brew) =>
+      setStoredBrews([...allBrews.filter((b) => b.id !== brew.id), brew]);
+    const overwriteAllBrews = setStoredBrews;
+
+    const getBrewsOfBean = (bean) => allBrews.filter(makeFilterByBean(bean));
+
+    return {
+      allBrews,
+      filteredBrews,
+      beans,
+      methods,
+      addBrew,
+      updateBrew,
+      defaultBrew,
+      makeBrew,
+      beanFilter,
+      setBeanFilter,
+      methodFilter,
+      setMethodFilter,
+      overwriteAllBrews,
+      getBrewsOfBean,
+    }
+  }, [allBrews, beanFilter, beans, filteredBrews, methodFilter, methods, setStoredBrews]);
 
   return (
     <BrewsContext.Provider value={value}>{children}</BrewsContext.Provider>
   );
-};
+}
 
 BrewsProvider.propTypes = {
   children: PropTypes.node.isRequired,
