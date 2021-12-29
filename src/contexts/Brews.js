@@ -89,16 +89,16 @@ export function BrewsProvider({ children }) {
   const [beanFilter, setBeanFilter] = useState('');
   const [methodFilter, setMethodFilter] = useState('');
 
-  const filterByBean = beanFilter ? makeFilterByBean(beanFilter) : alwaysTrue;
-  const filterByMethod = methodFilter
+  const filterByBean = useMemo(() => beanFilter ? makeFilterByBean(beanFilter) : alwaysTrue, [beanFilter]);
+  const filterByMethod = useMemo(() => methodFilter
     ? makeFilterByMethod(methodFilter)
-    : alwaysTrue;
+    : alwaysTrue, [methodFilter]);
 
-  const allBrews = storedBrews.map(parseStoredBrew).sort(newestFirst);
-  const filteredBrews = allBrews.filter(filterByBean).filter(filterByMethod);
+  const allBrews = useMemo(() => storedBrews.map(parseStoredBrew).sort(newestFirst), [storedBrews]);
+  const filteredBrews = useMemo(() => allBrews.filter(filterByBean).filter(filterByMethod), [allBrews, filterByBean, filterByMethod]);
 
-  const beans = getUniqueListOfBrewProp('bean', allBrews);
-  const methods = getUniqueListOfBrewProp('method', allBrews);
+  const beans = useMemo(() => getUniqueListOfBrewProp('bean', allBrews), [allBrews]);
+  const methods = useMemo(() => getUniqueListOfBrewProp('method', allBrews), [allBrews]);
 
   const value = useMemo(() => {
     const addBrew = (brew) => setStoredBrews([...allBrews, brew]);
