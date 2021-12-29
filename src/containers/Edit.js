@@ -1,6 +1,5 @@
 import { useContext } from 'react';
-import { useHistory } from 'react-router';
-import PropTypes from 'prop-types';
+import { useNavigate, useParams } from 'react-router';
 
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
@@ -9,13 +8,14 @@ import AddBrewForm from '../components/AddBrewForm/AddBrewForm';
 import { P } from '../components/Typography';
 import Wrapper from './Wrapper';
 
-export default function Edit({ brewId }) {
-  const history = useHistory();
+export default function Edit() {
+  const { id: brewId } = useParams();
+  const navigate = useNavigate();
   const { allBrews, beans, methods, techniques, updateBrew } = useContext(
     BrewsContext,
   );
   const { routes } = useContext(SettingsContext);
-  const navigateHome = () => history.push(routes.home);
+  const navigateHome = () => navigate(routes.home);
 
   const brew = allBrews.find((b) => b.id === brewId);
 
@@ -40,7 +40,3 @@ export default function Edit({ brewId }) {
     </Wrapper>
   );
 }
-
-Edit.propTypes = {
-  brewId: PropTypes.string.isRequired,
-};

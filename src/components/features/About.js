@@ -80,9 +80,10 @@ export default function About({ backupData, onImportBackupFile }) {
         <li>Include bean notes in backup file</li>
         <li>Make notes and techniques easier to edit</li>
       </ul>
-      <H3>v1.4.0</H3>
+      <H3>v1.4.1</H3>
       <ul>
         <li>Adds ability to copy brews</li>
+        <li>Internal upgrades and efficiency tweaks</li>
       </ul>
     </>
   );

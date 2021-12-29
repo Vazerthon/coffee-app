@@ -28,15 +28,17 @@ const Dropdown = styled(Select)`
   margin-bottom: ${({ theme }) => theme.spacing.units(2)};
 `;
 
-const makeToBrewCard = (editBrew, starBrew, copyBrew) => (brew) => (
-  <Card
+// eslint-disable-next-line func-names
+const makeToBrewCard = (editBrew, starBrew, copyBrew) => function(brew) {
+  const { id } = brew;
+  return <Card
     key={brew.id} // eslint-disable-line react/destructuring-assignment
     brew={brew}
-    editBrew={() => editBrew(brew.id)}
-    copyBrew={() => copyBrew(brew.id)}
+    editBrew={() => editBrew(id)}
+    copyBrew={() => copyBrew(id)}
     onStarBrew={() => starBrew(brew)}
   />
-);
+};
 
 export default function Brews({
   brews,

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
@@ -21,13 +21,13 @@ export default function Brews() {
     updateBrew,
   } = useContext(BrewsContext);
   const { routes } = useContext(SettingsContext);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToAddPage = (id) =>
-    history.push(id ? routes.makeCopyPath(id) : routes.makeAddPath());
+    navigate(id ? routes.makeCopyPath(id) : routes.makeAddPath());
 
   const goToEditPage = (id, copy) =>
-    history.push(routes.makeEditPath(id, copy));
+    navigate(routes.makeEditPath(id, copy));
   const starBrew = (brew) => updateBrew({ ...brew, starred: !brew.starred });
   const haveBrews = allBrews.length > 0;
 

@@ -62,13 +62,13 @@ const IconRow = styled.div`
   align-items: center;
 `;
 
-const NavListItem = ({ href, active, label, onClick }) => (
-  <ListItem>
+function NavListItem({ href, active, label, onClick }) {
+  return <ListItem>
     <NavLink tabIndex="0" href={href} active={active} onClick={onClick}>
       {label}
     </NavLink>
   </ListItem>
-);
+}
 
 NavListItem.propTypes = {
   href: PropTypes.string.isRequired,

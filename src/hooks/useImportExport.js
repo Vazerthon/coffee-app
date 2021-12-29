@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { SettingsContext } from '../contexts/Settings';
 import { BrewsContext } from '../contexts/Brews';
 import { BeanNotesContext } from '../contexts/BeanNotes';
 
 const useImportExport = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { routes } = useContext(SettingsContext);
   const { allBrews, overwriteAllBrews } = useContext(BrewsContext);
   const { beanNotes, overwriteAllNotes } = useContext(BeanNotesContext);
@@ -23,7 +23,7 @@ const useImportExport = () => {
         overwriteAllNotes(json.beanNotes);
       }
 
-      history.push(routes.home);
+      navigate(routes.home);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

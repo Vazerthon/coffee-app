@@ -7,7 +7,8 @@ const settings = {
   routes: {
     home: '/',
     about: '/about',
-    add: '/add/:id?',
+    add: '/add',
+    copy: '/add/:id',
     edit: '/edit/:id',
     beans: '/beans',
     makeEditPath: (id) => `/edit/${id}`,
@@ -16,11 +17,11 @@ const settings = {
   },
 };
 
-export const SettingsProvider = ({ children }) => (
-    <SettingsContext.Provider value={settings}>
+export function SettingsProvider({ children }) {
+  return <SettingsContext.Provider value={settings}>
       {children}
     </SettingsContext.Provider>
-  );
+}
 
 SettingsProvider.propTypes = {
   children: PropTypes.node.isRequired,

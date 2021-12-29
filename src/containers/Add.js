@@ -1,14 +1,14 @@
 import { useContext } from 'react';
-import { useHistory } from 'react-router';
-import PropTypes from 'prop-types';
+import { useNavigate, useParams } from 'react-router';
 
 import { BrewsContext } from '../contexts/Brews';
 import { SettingsContext } from '../contexts/Settings';
 import AddBrewForm from '../components/AddBrewForm/AddBrewForm';
 import Wrapper from './Wrapper';
 
-export default function Add({ brewId }) {
-  const history = useHistory();
+export default function Add() {
+  const { id: brewId } = useParams();
+  const navigate = useNavigate();
   const {
     beans,
     methods,
@@ -21,7 +21,7 @@ export default function Add({ brewId }) {
   const { routes } = useContext(SettingsContext);
   const { allBrews } = useContext(BrewsContext)
 
-  const navigateHome = () => history.push(routes.home);
+  const navigateHome = () => navigate(routes.home);
 
   const baseBrew = brewId ? allBrews.find(({ id }) => id === brewId) : defaultBrew || defaultBrew;
 
@@ -45,11 +45,3 @@ export default function Add({ brewId }) {
     </Wrapper>
   );
 }
-
-Add.propTypes = {
-  brewId: PropTypes.string,
-};
-
-Add.defaultProps = {
-  brewId: undefined,
-};
