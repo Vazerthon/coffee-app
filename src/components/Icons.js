@@ -15,6 +15,7 @@ import {
 
 import { IoMdDocument, IoMdClose, IoMdCopy } from 'react-icons/io';
 import { GoCalendar, GoPencil, GoPlus, GoStar } from 'react-icons/go';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 export const Beans = GiCoffeeBeans;
 export const CoffeePot = GiCoffeePot;
@@ -35,3 +36,5 @@ export const Play = GiPlayButton;
 export const Stop = GiPlainSquare;
 export const Star = GoStar;
 export const Clone = IoMdCopy;
+export const Previous = GrFormPrevious;
+export const Next = GrFormNext;
