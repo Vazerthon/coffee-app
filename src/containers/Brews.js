@@ -11,7 +11,6 @@ import Wrapper from './Wrapper';
 export default function Brews() {
   const {
     allBrews,
-    filteredBrews,
     beans,
     methods,
     beanFilter,
@@ -19,6 +18,10 @@ export default function Brews() {
     methodFilter,
     setMethodFilter,
     updateBrew,
+    currentPageBrews,
+    goToPreviousPage,
+    goToNextPage,
+    currentPage,
   } = useContext(BrewsContext);
   const { routes } = useContext(SettingsContext);
   const navigate = useNavigate();
@@ -36,7 +39,7 @@ export default function Brews() {
       {!haveBrews && <Welcome />}
       {haveBrews && (
         <BrewsComponent
-          brews={filteredBrews}
+          brews={currentPageBrews}
           beans={beans}
           methods={methods}
           beanFilter={beanFilter}
@@ -46,6 +49,9 @@ export default function Brews() {
           goToAddPage={goToAddPage}
           goToEditPage={goToEditPage}
           onStarBrew={starBrew}
+          goToPreviousPage={goToPreviousPage}
+          goToNextPage={goToNextPage}
+          currentPage={currentPage}
         />
       )}
     </Wrapper>

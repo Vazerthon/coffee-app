@@ -2,7 +2,8 @@ import styled from '@emotion/styled/macro';
 import PropTypes from 'prop-types';
 
 import BrewCard from '../BrewCard/BrewCard';
-import { AddButton } from '../Buttons';
+import { AddButton, Button } from '../Buttons';
+import { Previous, Next } from '../Icons'
 
 import { brewType } from '../../Types';
 import Select from '../Select';
@@ -28,6 +29,17 @@ const Dropdown = styled(Select)`
   margin-bottom: ${({ theme }) => theme.spacing.units(2)};
 `;
 
+const PageNavigationButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PageNavigationButton = styled(Button)`
+  margin: 0 ${({ theme }) => theme.spacing.units(4)};
+  width: ${({ theme }) => theme.spacing.units(20)};
+`;
+
 // eslint-disable-next-line func-names
 const makeToBrewCard = (editBrew, starBrew, copyBrew) => function(brew) {
   const { id } = brew;
@@ -51,6 +63,9 @@ export default function Brews({
   goToAddPage,
   goToEditPage,
   onStarBrew,
+  goToPreviousPage,
+  goToNextPage,
+  currentPage,
 }) {
   const toBrewCard = makeToBrewCard(goToEditPage, onStarBrew, goToAddPage);
   const haveBrews = brews.length > 0;
@@ -73,7 +88,16 @@ export default function Brews({
           label="Filter by method"
         />
       </Column>
-      {haveBrews && brews.map(toBrewCard)}
+      {haveBrews && (
+        <>
+          {brews.map(toBrewCard)}
+          <PageNavigationButtonsContainer>
+            <PageNavigationButton onClick={goToPreviousPage} aria-label="Previous page"><Previous /></PageNavigationButton>
+            {currentPage + 1}
+            <PageNavigationButton onClick={goToNextPage} aria-label="Next page"><Next /></PageNavigationButton>
+          </PageNavigationButtonsContainer>
+        </>
+      )}
       {!haveBrews && (
         <P>
           Looks like you&apos;ve never made a {methodFilter} brew with{' '}
@@ -96,6 +120,9 @@ Brews.propTypes = {
   methodFilter: PropTypes.string.isRequired,
   setMethodFilter: PropTypes.func.isRequired,
   onStarBrew: PropTypes.func.isRequired,
+  goToPreviousPage: PropTypes.func.isRequired,
+  goToNextPage: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 Brews.defaultProps = {

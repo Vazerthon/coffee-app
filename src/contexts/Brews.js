@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo } from 'react';
+import { createContext, useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import usePersistedState from '../hooks/usePersistedState';
@@ -84,10 +84,13 @@ const makeFilterByBean = (beanFilter) => ({ bean }) =>
 const makeFilterByMethod = (methodFilter) => ({ method }) =>
   areEqual(methodFilter, method);
 
+const ITEMS_PER_PAGE = 10;
+
 export function BrewsProvider({ children }) {
   const [storedBrews, setStoredBrews] = usePersistedState('brews', []);
-  const [beanFilter, setBeanFilter] = useState('');
-  const [methodFilter, setMethodFilter] = useState('');
+  const [beanFilter, setBeanFilterState] = useState('');
+  const [methodFilter, setMethodFilterState] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
 
   const filterByBean = useMemo(() => beanFilter ? makeFilterByBean(beanFilter) : alwaysTrue, [beanFilter]);
   const filterByMethod = useMemo(() => methodFilter
@@ -99,6 +102,23 @@ export function BrewsProvider({ children }) {
 
   const beans = useMemo(() => getUniqueListOfBrewProp('bean', allBrews), [allBrews]);
   const methods = useMemo(() => getUniqueListOfBrewProp('method', allBrews), [allBrews]);
+
+  const indexOfFirstItemOnCurrentPage = useMemo(() => currentPage * ITEMS_PER_PAGE, [currentPage]);
+  const currentPageBrews = useMemo(() => filteredBrews.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + ITEMS_PER_PAGE), [filteredBrews, indexOfFirstItemOnCurrentPage]);
+  const goToPreviousPage = useCallback(() => setCurrentPage(Math.max(0, currentPage - 1)), [currentPage]);
+  const maxPageNumber = useMemo(() => Math.floor(filteredBrews.length / ITEMS_PER_PAGE), [filteredBrews]);
+  const goToNextPage = useCallback(() => setCurrentPage(Math.min(currentPage + 1, maxPageNumber)), [currentPage, maxPageNumber]);
+  const resetPageNumber = useCallback(() => setCurrentPage(0), []);
+
+  const setBeanFilter = useCallback((value) => {
+    setBeanFilterState(value);
+    resetPageNumber();
+  }, [resetPageNumber])
+
+  const setMethodFilter = useCallback((value) => {
+    setMethodFilterState(value);
+    resetPageNumber();
+  }, [resetPageNumber])
 
   const value = useMemo(() => {
     const addBrew = (brew) => setStoredBrews([...allBrews, brew]);
@@ -123,8 +143,12 @@ export function BrewsProvider({ children }) {
       setMethodFilter,
       overwriteAllBrews,
       getBrewsOfBean,
+      currentPageBrews,
+      goToPreviousPage,
+      goToNextPage,
+      currentPage,
     }
-  }, [allBrews, beanFilter, beans, filteredBrews, methodFilter, methods, setStoredBrews]);
+  }, [allBrews, beanFilter, beans, currentPage, currentPageBrews, filteredBrews, goToNextPage, goToPreviousPage, methodFilter, methods, setBeanFilter, setMethodFilter, setStoredBrews]);
 
   return (
     <BrewsContext.Provider value={value}>{children}</BrewsContext.Provider>
